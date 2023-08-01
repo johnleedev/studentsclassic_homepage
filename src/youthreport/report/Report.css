@@ -1,0 +1,523 @@
+.LastReport {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.main {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1700px;
+  height: 1450px;
+  background-image: url('../images/YouthReport2-1.jpg'); 
+  background-repeat: no-repeat;
+}
+.main_notice {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  z-index: 9;
+  width: 350px;
+  height: 100px;
+  line-height: 40px;
+  background-color: rgb(185, 251, 208);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  display: none;
+}
+
+.buttons {
+  position: absolute;
+  top: 50px;
+  left: 120px;
+  width: 1400px;
+  height: 100px;
+  display: flex;
+}
+
+.button1 {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 120px;
+  height: 50px;
+  font-size: 20px;
+  background-color: #fcfbe6;
+  cursor: pointer;
+  transition: all 0.5s;
+  z-index: 9;
+}
+.button1:hover {
+  background-color: #6f6e5a;
+  font-weight: bold;
+}
+
+.button2 {
+  background-color: #fcfbe6;
+  font-size: 20px;
+  width: 120px;
+  height: 80px;
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.5s;
+  z-index: 9;
+}
+
+.button2:hover {
+  background-color: #6f6e5a;
+  font-weight: bold;
+}
+
+.statsButton{
+  top: 130px;
+  left: 990px;
+}
+.homeButton1 {
+  top: 130px;
+  left: 1130px;
+}
+.resultButton {
+  top: 130px;
+  left: 1270px;
+}
+
+
+/* 날짜 */
+.report_dateselect_wrapper {
+  position: absolute;
+  top: 220px;
+  right: 620px;
+  display: flex;
+  height: 40px;
+  z-index: 9;
+}
+.report_dateselect_text1 {
+  width: 115px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(188, 254, 183);
+}
+.report_dateselect_box { 
+  width: 100px;
+  height: 100%;
+  font-size: 18px;
+}
+.report_dateselect_text2 {
+  position: absolute;
+  top: 185px;
+  right: 620px;
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+}
+
+
+/* // inputs */
+
+.inputs {
+  position: absolute;
+  width: 1600px;
+  top: -6px;
+  left: -8px;
+}
+
+.LastReport input {
+  text-align: center;
+  font-size: 25px;
+  border: 1px solid #b1b1ae; 
+  border-radius: 5px;
+  z-index: 1;
+  position: absolute;
+}
+
+.부서 {
+  top: 412px;
+  left: 285px;
+  width: 780px;
+  height: 50px;
+}
+
+.날짜 {
+  top: 528px;
+  height: 50px;
+  width: 100px;
+}
+.날짜.년 {
+  left: 285px;
+  width: 150px;
+}
+.날짜.월 {
+  left: 550px;
+}
+.날짜.일 {
+  left: 760px;
+}
+.날짜.째주 {
+  left: 950px;
+}
+
+.예배 {
+  top: 745px;
+  width: 230px;
+  height: 50px;
+}
+.예배.예배기도자 {
+  left: 285px;
+}
+.예배.설교본문 {
+  left: 535px;
+}
+.예배.설교자 {
+  left: 787px;
+}
+.예배.설교제목 {
+  left: 1040px;
+  width: 480px;
+}
+
+
+.헌금 {
+  top: 945px;
+  width: 230px;
+  height: 50px;
+}
+.헌금1 {
+  left: 285px;
+}
+.헌금2 {
+  left: 535px;
+}
+.헌금3 {
+  left: 787px;
+}
+.헌금4 {
+  left: 1040px;
+}
+.헌금.합계 {
+  left: 1293px;
+}
+
+.출석-반 {
+  font-size: 16px;
+  width: 80px;
+  height: 50px;
+  position: absolute;
+  background-color: #fcfbe6;
+  border: 1px solid #cecca9;
+  top: 1075px;
+}
+.출석-반.출석-반1 {
+  left: 435px;
+}
+.출석-반.출석-반2 {
+  left: 528px;
+}
+.출석-반.출석-반3 {
+  left: 620px;
+}
+.출석-반.출석-반4 {
+  left: 710px;
+}
+.출석-반.출석-반5 {
+  left: 802px;
+}
+.출석-반.출석-반6 {
+  left: 893px;
+}
+.출석-반.출석-반7 {
+  left: 984px;
+}
+.출석-반.출석-반8 {
+  left: 1076px;
+}
+.출석-반.출석-반9 {
+  left: 1167px;
+}
+.출석-반.출석-반10 {
+  left: 1258px;
+}
+.출석-반.출석-반11 {
+  left: 1350px;
+}
+
+.학년_세-1 {
+  font-size: 20px;
+  top: 1145px;
+  left: 280px;
+  width: 140px;
+  height: 50px;
+}
+.학년_세-2 {
+  font-size: 20px;
+  top: 1215px;
+  left: 280px;
+  width: 140px;
+  height: 50px;
+  background-color: #eaf5ef;
+  border: 1px solid #a1b2a8;
+}
+.학년_세-3 {
+  font-size: 20px;
+  top: 1287px;
+  left: 280px;
+  width: 140px;
+  height: 50px;
+}
+
+
+.출석1 {
+  width: 80px;
+  height: 50px;
+  top: 1145px;
+}
+.출석1.출석1-1 {
+  left: 435px;
+}
+.출석1.출석1-2 {
+  left: 528px;
+}
+.출석1.출석1-3 {
+  left: 620px;
+}
+.출석1.출석1-4 {
+  left: 710px;
+}
+.출석1.출석1-5 {
+  left: 802px;
+}
+.출석1.출석1-6 {
+  left: 893px;
+}
+.출석1.출석1-7 {
+  left: 984px;
+}
+.출석1.출석1-8 {
+  left: 1076px;
+}
+.출석1.출석1-9 {
+  left: 1167px;
+}
+.출석1.출석1-10 {
+  left: 1258px;
+}
+.출석1.출석1-11 {
+  left: 1350px;
+}
+.출석1.출석1-12 {
+  text-align: center;
+  font-size: 25px;
+  border-radius: 5px;
+  z-index: 1;
+  position: absolute;
+  left: 1446px;
+  background-color: #e6e7e9;
+  border: 1px solid #b7b8b9;
+}
+
+.출석2 {
+  background-color: #eaf5ef;
+  border: 1px solid #a1b2a8;
+  width: 80px;
+  height: 50px;
+  top: 1215px;
+}
+
+.출석2.출석2-1 {
+  left: 435px;
+}
+.출석2.출석2-2 {
+  left: 528px;
+}
+.출석2.출석2-3 {
+  left: 620px;
+}
+.출석2.출석2-4 {
+  left: 710px;
+}
+.출석2.출석2-5 {
+  left: 802px;
+}
+.출석2.출석2-6 {
+  left: 893px;
+}
+.출석2.출석2-7 {
+  left: 984px;
+}
+.출석2.출석2-8 {
+  left: 1076px;
+}
+.출석2.출석2-9 {
+  left: 1167px;
+}
+.출석2.출석2-10 {
+  left: 1258px;
+}
+.출석2.출석2-11 {
+  left: 1350px;
+}
+.출석2.출석2-12 {
+  left: 1446px;
+  background-color: #e6e7e9;
+  border: 1px solid #b7b8b9;
+}
+
+
+.출석3 {
+  top: 1287px;
+  width: 80px;
+  height: 50px;
+}
+.출석3.출석3-1 {
+  left: 435px;
+}
+.출석3.출석3-2 {
+  left: 528px;
+}
+.출석3.출석3-3 {
+  left: 620px;
+}
+.출석3.출석3-4 {
+  left: 710px;
+}
+.출석3.출석3-5 {
+  left: 802px;
+}
+.출석3.출석3-6 {
+  left: 893px;
+}
+.출석3.출석3-7 {
+  left: 984px;
+}
+.출석3.출석3-8 {
+  left: 1076px;
+}
+.출석3.출석3-9 {
+  left: 1167px;
+}
+.출석3.출석3-10 {
+  left: 1258px;
+}
+.출석3.출석3-11 {
+  left: 1350px;
+}
+.출석3.출석3-12 {
+  left: 1446px;
+  background-color: #e6e7e9;
+  border: 1px solid #b7b8b9;
+}
+
+
+
+.출석총원-재적 {
+  width: 80px;
+  height: 50px;
+  z-index: 1;
+  
+  top: 1360px;
+  left: 1295px;
+}
+.출석총원-계 {
+  top: 1360px;
+  width: 80px;
+  height: 50px;
+  left: 1446px;
+  background-color: #e6e7e9;
+  border: 1px solid #b7b8b9;
+}
+.출석총원-새친구 {
+  top: 1360px;
+  width: 80px;
+  height: 50px;
+  left: 550px;
+  background-color: #fcfbe6;
+  border: 1px solid #cecca9;
+}
+
+
+
+.결석자박스 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1700px;
+  background-image: url(../images/YouthReport2-2.jpg);
+  background-repeat: no-repeat;
+  padding-top: 96px;
+  padding-left: 264px;
+}
+.결석자박스리스트 {
+  width: 630px;
+  height: 80px;
+  background-image: url(../images/YouthReport2-3.jpg);
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 20px;
+  margin: 1px;
+  font-size: 15px;
+}
+.소그룹 {
+  width: 160px;
+  height: 50px;
+}
+.결석자 {
+  margin-left: 160px;
+  width: 130px;
+  height: 50px;
+}
+.사유 {
+  margin-left: 310px;
+  width: 290px;
+  height: 50px;
+}
+
+
+.report_footer {
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: relative;
+  top:50px;
+  width: 1700px;
+  height: 300px;
+  background-repeat: no-repeat;
+}
+
+.savebutton {
+  position: absolute;
+  top: 30px;
+  left: 1250px;
+}
+.homebutton2 {
+  position: absolute;
+  top: 30px;
+  left: 1400px;
+}
+
+@media screen and (max-width : 500px) { 
+  .mainwrapper {
+    margin-top: 200px;
+  }
+ .main_notice {
+  display: flex;
+ }
+ .homeButton1 {
+  top: -100px;
+  left: -10px;
+ }
+ .resultButton {
+  top: -100px;
+  left: 120px;
+ }
+}

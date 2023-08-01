@@ -1,0 +1,162 @@
+.AppReport {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ReportMain {
+  position: relative;  
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 1px;
+  width: 1800px;
+}
+.ReportMain .maintitle {
+  margin: 100px 0 32px 0;
+  width: 100%;
+  height: 100px;
+  font-size: 80px;
+}
+.ReportMain .dep_box {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.ReportMain .dep_list {
+  margin: 20px;
+  width: 200px;
+  height: 150px;
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px 2px grey;
+}
+.ReportMain .dep_list:hover {
+  background-color: rgb(188, 188, 188);
+}
+.ReportMain .dep_list p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 32px;
+  width: fit-content;
+  font-size: 26px;
+}
+
+.ReportMain .dep_buttonbox1 {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 60%;
+  height: 150px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.ReportMain .link_lastreport {
+  font-size: 24px;
+  width: 500px;
+  height: 100px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px 2px grey;
+  border: 1px;
+}
+.ReportMain .link_lastreport:hover {
+  background-color: rgb(188, 188, 188);
+}
+
+.ReportMain .dep_buttonbox2 {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReportMain .link_login {
+  width: 180px;
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.ReportMain .link_login:hover {
+  background-color: gray;
+}
+
+
+@media screen and (max-width : 1500px) {
+  .ReportMain {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width : 1000px) { 
+  .ReportMain {
+    width: 100%;
+  }
+  .ReportMain .maintitle {
+    font-size: 60px;
+  }
+  .ReportMain .dep_box {
+    width: 650px;
+    margin-bottom: 30px;
+    
+  }
+  .ReportMain .dep_list {
+    margin: 15px;
+    width: 180px;
+    height: 130px;
+  }
+  .ReportMain .dep_buttonbox2 {
+    height: 200px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width : 600px) { 
+  .ReportMain {
+    width: 100%;
+  }
+  .ReportMain .maintitle {
+    margin: 80px 0 0 0;
+    font-size: 40px;
+  }
+  .ReportMain .dep_box {
+    width: 370px;
+    margin-bottom: 30px;
+  }
+  .ReportMain .dep_list {
+    width: 150px;
+  }
+  .ReportMain .dep_buttonbox1 {
+    width: 330px;
+    height: 120px;
+  }
+  .ReportMain .link_lastreport {
+    width: 320px;
+    font-size: 22px;
+  }    
+  .ReportMain .dep_buttonbox2 {
+    width: 300px;
+    height: 120px;
+  }
+}

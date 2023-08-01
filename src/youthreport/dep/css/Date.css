@@ -1,0 +1,45 @@
+td {
+  border: 1px solid #333;
+  vertical-align: middle;
+}
+
+.Date {
+  width: 1800px;
+  height: 60px;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.Date_table1 {
+  position: sticky;
+  left: 0;
+  width: 220px;
+  height: 60px;
+  display: flex;
+  z-index: 1;
+  background-color: #fff;
+}
+.Date_empty {
+  width: 20px;
+}
+.Date_group,
+.Date_name {
+  width: 100px;
+}
+
+.Date_table2 {
+  position: relative;
+  width: 1580px;
+  height: 60px;
+}
+.Date_table2 .date {
+  background-color: rgb(240, 240, 240);
+  font-size: 1rem;
+  height: 59px;
+  width: calc(1580px / 53);
+  text-align: center;
+}
+
+
+
+
