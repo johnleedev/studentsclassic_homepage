@@ -1,5 +1,4 @@
 import './App.css';
-import $ from "jquery";
 import Question from './components/Question';
 import LocationMap from './components/LocationMap';
 import Footer from './components/Footer';
