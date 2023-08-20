@@ -32,7 +32,7 @@ function LocationMap(props) {
               </div>
               <div  className='locationmap_map_notice_wrap'>
                 <div className='locationmap_map_notice'>
-                  <div className='locationmap_map_notice_name'>음악하는대학생들 사무실</div>
+                  <div className='locationmap_map_notice_name'>성악하는대학생들 사무실</div>
                   <div className='locationmap_map_notice_text'>대구 동구 서호동 90-5</div>
                 </div>
                 {/* <div className='locationmap_map_notice'>

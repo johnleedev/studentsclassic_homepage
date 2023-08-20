@@ -8,7 +8,7 @@ function Footer(props) {
         <div className='footer_box_box1'>
           <div className='footer_notice'>
             <div className='footer_notice_name'>상호명</div>  
-            <div className='footer_notice_content'>음대생들 (대표자: 이요한)</div>  
+            <div className='footer_notice_content'>좋은사람들 (대표자: 이요한)</div>  
           </div>
           <div className='footer_notice'>
             <div className='footer_notice_name'>사업자번호</div>  
@@ -31,9 +31,9 @@ function Footer(props) {
               </a>
             </div>  
             <div className='footer_notice_instarcontent'>
-              <div className='footer_notice_instarcontent_text'>음대생들</div>  
+              <div className='footer_notice_instarcontent_text'>성악하는대학생들</div>  
               <div className='footer_notice_instarcontent_text'>전용 인스타그램 계정</div>  
-              <div className='footer_notice_instarcontent_text'>(@studentsclassic)</div>  
+              <div className='footer_notice_instarcontent_text'>(@studentsclassicvocal)</div>  
             </div>  
           </div>
           <div className='footer_notice_right'>
