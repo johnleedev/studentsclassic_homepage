@@ -44,7 +44,7 @@ function Question(props) {
             <div className='qustion_contact_name'>네이버 톡톡</div>
             <div className='qustion_contact_bar'></div>
             <div className='qustion_contact_notice'>
-              <span className='qustion_span'>네이버 톡톡</span>을 통해서도 문의가 가능해요. 이는 네이버에서 "음대생들"을 검색한 후에도 이용하실 수 있어요.
+              <span>네이버 톡톡</span>을 통해서도 문의가 가능해요. 이는 네이버에서 "성악하는대학생들"을 검색한 후에도 이용하실 수 있어요.
             </div>
           </div>
           
