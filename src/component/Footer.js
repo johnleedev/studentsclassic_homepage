@@ -8,7 +8,7 @@ function Footer(props) {
         <div className='footer_box_box1'>
           <div className='footer_notice'>
             <div className='footer_notice_name'>상호명</div>  
-            <div className='footer_notice_content'>좋은사람들 (대표자: 이요한)</div>  
+            <div className='footer_notice_content'>더좋은사람들 (대표자: 이요한)</div>  
           </div>
           <div className='footer_notice'>
             <div className='footer_notice_name'>사업자번호</div>  
@@ -20,13 +20,13 @@ function Footer(props) {
           </div> */}
           <div className='footer_notice'>
             <div className='footer_notice_name'>업체주소</div>  
-            <div className='footer_notice_content'>대구 동구 서호동 90-5</div>  
+            <div className='footer_notice_content'>대구 달성군 다사읍 죽곡리 876</div>  
           </div>
         </div>
         <div className='footer_box_box2'>
           <div className='footer_notice_right'>
             <div className='footer_notice_instarname'>
-              <a href='https://www.instagram.com/studentsclassicvocal/' target='_blank'>
+              <a href='https://www.instagram.com/studentsclassic_vocal/' target='_blank'>
               <img src='img/instarblack.png'></img>
               </a>
             </div>  

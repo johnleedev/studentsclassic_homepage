@@ -24,7 +24,7 @@ function Question(props) {
             </div>
           </div>
           <div className='qustion_contact'>
-            <a href='https://www.instagram.com/studentsclassicvocal/' target='_blank'>
+            <a href='https://www.instagram.com/studentsclassic_vocal/' target='_blank'>
               <div className='qustion_contact_image'>
                 <img src='img/how-to-contact-3.png'></img>
               </div>
