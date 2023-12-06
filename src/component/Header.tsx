@@ -13,9 +13,9 @@ export default function Header() {
             <div className="maintitle" onClick={()=>{
                 navigate(`/`)
                 }}>성악하는대학생들</div>
-            </div>
-            <div className="menu_2"></div>
-            <div className="menu_3">
+          </div>
+          <div className="menu_2"></div>
+          <div className="menu_3">
             <div className="menulist" onClick={()=>{}}>About Us</div>
             <div className="menulist" onClick={()=>{}}>문의</div>
             <div className="menulist" onClick={()=>{}}>위치</div>

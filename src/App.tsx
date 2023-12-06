@@ -6,7 +6,6 @@ import LoginKakao from './login/LoginKakao';
 import LoginNaver from './login/LoginNaver';
 import Logister from './login/Logister';
 import Admin from './Admin/Admin';
-import AdminMain from './Admin/AdminMain';
 
 
 function App() {
@@ -20,8 +19,7 @@ function App() {
         <Route path="/loginnaver" element={<LoginNaver/>}/>
         <Route path="/loginkakao" element={<LoginKakao/>}/>
         <Route path="/logister" element={<Logister/>}/>
-        <Route path="/admin" element={<Admin/>}/>
-        <Route path="/adminmain" element={<AdminMain/>}/>
+        <Route path="/admin/*" element={<Admin/>}/>
       </Routes>
       
     </div>
