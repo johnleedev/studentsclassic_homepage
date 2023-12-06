@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import MainURL from '../MainURL';
 import axios from 'axios';
 
-export default function AdminMain( props: any) {
+export default function Alert (props: any) {
   
   const navigate = useNavigate();
   let [refresh, setRefresh] = useState<boolean>(false);
@@ -36,6 +36,14 @@ export default function AdminMain( props: any) {
   // 알림보내기
   let [sendNotifiTitle, setsendNotifiTitle] = useState('');
   let [sendNotifiMessage, setsendNotifiMessage] = useState('');
+
+  const alertNotification = () =>{
+    if (window.confirm("정말로 보내시겠습니까??")) {
+      handleNotification();
+    } else {
+      alert("취소되었습니다.");
+  }
+  }
   
   const handleNotification = () => {
     axios
@@ -45,7 +53,7 @@ export default function AdminMain( props: any) {
     })
     .then((res) => { 
       setRefresh(!refresh);
-      alert(`Title: ${res.data.notifiTitle}, Body: ${res.data.notifiMessage}`);
+      alert(`전송되었습니다. Title: ${res.data.notifiTitle}, Body: ${res.data.notifiMessage}`);
     })
     .catch((err) => {
       console.log('Notification_err', err);
@@ -75,6 +83,12 @@ export default function AdminMain( props: any) {
       <Header/>
     
         <div className='AdminContent'>
+
+        <div className='amdin_Main_Box1' onClick={()=>{
+                navigate(`/admin/news`)
+          }}>
+            뉴스
+          </div>
 
           <div className='amdin_alert_list_wrapper'>
 
@@ -125,11 +139,11 @@ export default function AdminMain( props: any) {
             </div>
 
             <div className='admin_box2'>
-              <div className='admin_title addheight'>Body</div>
-              <div className='admin_content addheight'>
+              <div className='admin_title addheight1'>Body</div>
+              <div className='admin_content addheight1'>
                 <input
                 type='text'
-                className='admin_content_input addheight'
+                className='admin_content_input addheight1'
                 onChange={(e)=>{setsendNotifiMessage(e.target.value)}}>
                 </input>
               </div> 
@@ -138,7 +152,7 @@ export default function AdminMain( props: any) {
           </div>
 
           <button className='login_button' 
-              onClick={handleNotification}>알림보내기</button>
+              onClick={alertNotification}>알림보내기</button>
 
         </div>
 
