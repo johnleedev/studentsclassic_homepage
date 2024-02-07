@@ -21,24 +21,26 @@ export default function News (props: any) {
   let [newsMessage, setNewsMessage] = useState('');
   
   const handleNews = () => {
-    // console.log(newsTitle);
-    // console.log(newsAuthor);
-    // console.log(newsDate);
-    // console.log(newsLink);
-    // console.log(newsImageUrl);
-    // console.log(newsMessage);
     axios
     .post(`${MainURL}/home/inputnews`, {
-      // newsTitle : newsTitle,
-      // newsDate : newsDate,
-      // newsAuthor : newsAuthor,
-      // newsLink : newsLink,
-      // newsImageUrl : newsImageUrl,
-      // newsMessage : newsMessage
+      newsTitle : newsTitle,
+      newsDate : newsDate,
+      newsAuthor : newsAuthor,
+      newsLink : newsLink,
+      newsImageUrl : newsImageUrl,
+      newsMessage : newsMessage
     })
     .then((res) => { 
-      setRefresh(!refresh);
-      alert(`입력되었습니다.`);
+      if (res.data) {
+        setRefresh(!refresh);
+        alert(`입력되었습니다.`);
+      }
+      setNewsTitle('');
+      setNewsDate('');
+      setNewsAuthor('');
+      setNewsLink('');
+      setNewsImageUrl('');
+      setNewsMessage('');
     })
     .catch((err) => {
       console.log('News_err', err);
@@ -54,9 +56,9 @@ export default function News (props: any) {
       <div className='AdminContent'>
         
         <div className='amdin_Main_Box1' onClick={()=>{
-              navigate(`/admin/alert`)
+              navigate(`/admin/main`)
         }}>
-          알림 전송 페이지
+          뒤로가기
         </div>        
 
         <div className='admin_input_wrapper'>
@@ -64,6 +66,7 @@ export default function News (props: any) {
             <div className='admin_title'>제목</div>
             <div className='admin_content'>
               <input className='admin_content_input'
+                value={newsTitle}
                 type='text' onChange={(e)=>{setNewsTitle(e.target.value)}}></input>
             </div> 
           </div>
@@ -72,6 +75,7 @@ export default function News (props: any) {
             <div className='admin_title'>날짜</div>
             <div className='admin_content'>
               <input className='admin_content_input'
+                value={newsDate}
                 type='text' onChange={(e)=>{setNewsDate(e.target.value)}}></input>
             </div> 
           </div>
@@ -80,6 +84,7 @@ export default function News (props: any) {
             <div className='admin_title'>저자</div>
             <div className='admin_content'>
               <input className='admin_content_input'
+                value={newsAuthor}
                 type='text' onChange={(e)=>{setNewsAuthor(e.target.value)}}></input>
             </div> 
           </div>
@@ -88,6 +93,7 @@ export default function News (props: any) {
             <div className='admin_title'>원본 링크</div>
             <div className='admin_content'>
               <input className='admin_content_input'
+                value={newsLink}
                 type='text' onChange={(e)=>{setNewsLink(e.target.value)}}></input>
             </div> 
           </div>
@@ -96,6 +102,7 @@ export default function News (props: any) {
             <div className='admin_title'>이미지 주소</div>
             <div className='admin_content'>
               <input className='admin_content_input'
+                value={newsImageUrl}
                 type='text' onChange={(e)=>{setNewsImageUrl(e.target.value)}}></input>
             </div> 
           </div>

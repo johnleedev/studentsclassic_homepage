@@ -1,0 +1,162 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.apply {
+  @include middle;
+
+
+  > .inner {
+    margin-top: 100px;
+    @include middle;
+    padding-bottom: 100px;
+    flex-direction: column;
+
+    
+    .inputbox {
+      width: 850px;
+      min-height: 50px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    
+      .name {
+        width: 150px;
+        @include middle;
+      }
+      .name2 {
+        width: 50px;
+        margin-left: 15px;
+        @include middle;
+      }
+      > input,
+      > .input {
+        width: 800px;
+        height: 100%;
+        padding: 4px 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #777;
+        font-size: 20px;
+      }
+      textarea {
+        width: 800px;
+        min-height: 350px;
+        resize: none;
+      }
+      .plus-minus-button{
+        width: 50px;
+        height: 50px;
+        @include middle;
+       
+        p {
+          width: 30px;
+          height: 30px;
+          font-size: 24px;
+          @include middle;
+          border: 1px solid #8C8C8C;
+          border-radius: 5px;
+        }
+        p:hover {
+          background-color: #8C8C8C;
+        }
+      }
+
+    }
+    .words {
+      width: 1300px;
+      
+      .rowtitle {
+        height: 30px;
+      }
+      .rows {
+        display: flex;
+        border-bottom: 1px solid #EAEAEA;
+        height: 30px;
+        align-items: center;
+
+        .word-id {
+          width: 50px;
+        }
+        .word-word {
+          width: 150px;
+        }
+        .word-meaning {
+          width: 1000px;
+          text-align: start;
+        }
+        .word-revise {
+          width: 100px;
+          @include middle;
+
+          .word-revise-btn {
+            width: 70px;
+            height: 20px;
+            font-size: 12px;
+            border: 1px solid #BDBDBD;
+            border-radius: 3px;
+            @include middle;
+          }
+          .word-revise-btn:hover {
+            background-color: #EAEAEA;
+            cursor: pointer;
+          }
+        }
+        .word-delete {
+          width: 100px;
+          @include middle;
+
+          .word-delete-btn {
+            width: 70px;
+            height: 20px;
+            font-size: 12px;
+            border: 1px solid #BDBDBD;
+            border-radius: 3px;
+            @include middle;
+          }
+          .word-delete-btn:hover {
+            background-color: #EAEAEA;
+            cursor: pointer;
+          }
+        }
+      }
+      
+    }
+    
+    .buttonbox {
+      width: 400px;
+      height: 50px;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+
+      .button {
+        width: 150px;
+        height: 40px;
+        background-color: #EAEAEA;
+        border-radius: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        @include middle;
+
+        p {
+          font-weight: 700;
+        }
+      }
+      .button:hover {
+        background-color: #8C8C8C;
+        cursor: pointer;
+      }
+    }
+  }
+
+}
+

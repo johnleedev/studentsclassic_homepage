@@ -32,7 +32,7 @@ function Question(props) {
             <div className='qustion_contact_name'>인스타 DM</div>
             <div className='qustion_contact_bar'></div>
             <div className='qustion_contact_notice'>
-              위의 아이콘을 클릭하시거나 인스타그램에 <span className='qustion_span'>@studentsclassicvocal</span>를 검색하여 들어오시면 DM을 통해 문의가 가능해요.
+              위의 아이콘을 클릭하시거나 인스타그램에 <span className='qustion_span'>@studentsclassic_vocal</span>를 검색하여 들어오시면 DM을 통해 문의가 가능해요.
             </div>
           </div>
           <div className='qustion_contact'>

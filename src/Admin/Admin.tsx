@@ -5,6 +5,8 @@ import Main from './Main';
 import Login from './Login';
 import Alert from './Alert';
 import News from './News';
+import Concert from './Concert';
+import Concours from './Concours';
 
 export default function Admin( props: any) {
 
@@ -15,6 +17,8 @@ export default function Admin( props: any) {
         <Route path="/main" element={<Main/>}/>
         <Route path="/alert" element={<Alert/>}/>
         <Route path="/news" element={<News/>}/>
+        <Route path="/concert" element={<Concert/>}/>
+        <Route path="/concours" element={<Concours/>}/>
       </Routes>
     </div>
   );

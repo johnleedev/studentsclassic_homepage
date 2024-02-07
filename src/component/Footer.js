@@ -33,7 +33,7 @@ function Footer(props) {
             <div className='footer_notice_instarcontent'>
               <div className='footer_notice_instarcontent_text'>성악하는대학생들</div>  
               <div className='footer_notice_instarcontent_text'>전용 인스타그램 계정</div>  
-              <div className='footer_notice_instarcontent_text'>(@studentsclassicvocal)</div>  
+              <div className='footer_notice_instarcontent_text'>(@studentsclassic_vocal)</div>  
             </div>  
           </div>
           <div className='footer_notice_right'>

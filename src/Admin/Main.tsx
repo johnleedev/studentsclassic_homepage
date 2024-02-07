@@ -22,6 +22,16 @@ export default function Main( props: any) {
           }}>
             뉴스
           </div>
+          <div className='amdin_Main_Box1' onClick={()=>{
+                navigate(`/admin/concert`)
+          }}>
+            콘서트
+          </div>
+          <div className='amdin_Main_Box1' onClick={()=>{
+                navigate(`/admin/concours`)
+          }}>
+            콩쿠르
+          </div>
 
       </div>
 

@@ -84,11 +84,11 @@ export default function Alert (props: any) {
     
         <div className='AdminContent'>
 
-        <div className='amdin_Main_Box1' onClick={()=>{
-                navigate(`/admin/news`)
+          <div className='amdin_Main_Box1' onClick={()=>{
+                navigate(`/admin/main`)
           }}>
-            뉴스
-          </div>
+            뒤로가기
+          </div> 
 
           <div className='amdin_alert_list_wrapper'>
 
