@@ -1,0 +1,193 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+@mixin margin-vertical-middle {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.menumodal {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px 40px;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+
+  // close버튼
+  .close {
+    text-align: end;
+    height: 50px;
+  }
+  .close:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+ 
+  // inner
+  > .inner {
+    width: 1000px;
+    
+    section {
+      margin: 30px 0;
+    }
+    // profile -----------
+    .profile {
+      .image {
+        width: 300px;
+        margin: 20px 0;
+      }
+      .career-box {
+        margin: 15px 20px;
+  
+        h4 {
+          font-size: 16px;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+        .subbox {
+          margin-left: 20px;
+          margin-bottom: 10px;
+          p {
+            margin: 7px 20px;
+          }
+        }
+      }
+      .rowbox {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 20px;
+  
+        p {
+          line-height: 30px;
+        }
+      }
+    }
+
+    // note -----------
+    .note {
+      @include middle();
+      flex-direction: column;
+
+      .image {
+        width: 1000px;
+        margin-bottom: 10px;
+      }
+      .notebox {
+        width: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 20px;
+        margin-bottom: 50px;
+  
+        p {
+          line-height: 30px;
+          
+        }
+      }
+    }
+
+    // contact -----------
+    .contact {
+      padding: 10px;
+      
+      h1 {
+        margin-bottom: 10px;
+      }
+    }
+
+
+
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    p {
+
+    }
+  }
+}  
+
+
+@media screen and (max-width : 1200px) { 
+  
+  .menumodal { 
+    width: 90vw;
+    padding: 25px 10px;
+
+    > .inner {
+      width: 85vw;
+
+      section {
+        margin: 50px 0;
+      }
+
+      // profile -----------
+      .profile {
+        left: 0;
+        right: 0;
+        width: 85vw;
+        padding: 10px;
+        
+
+        .image {
+          width: calc(100% - 20px);
+        }
+
+        .career-box {
+          width: calc(100% - 20px);
+          margin: 30px 0px;
+
+          .subbox {
+            margin-left: 0px;
+            p {
+              margin: 10px 10px;
+              line-height: 35px;
+            }
+          }
+        }
+        .rowbox {
+          width: calc(100% - 20px);
+          padding-left: 0px;
+          p {
+            line-height: 35px;
+          }
+        }
+      }
+
+      // note -----------
+      .note {
+        left: 0;
+        right: 0;
+        width: 85vw;
+        padding: 10px;
+        
+        .image {
+          width: calc(100% - 20px);
+          margin-bottom: 10px;
+        }
+        p {
+          width: calc(100% - 20px);
+          line-height: 30px;
+        }
+        .notebox {
+          width: calc(100% - 20px);
+          padding-left: 0px;
+
+          p {
+            line-height: 35px;
+          }
+        }
+      }
+    }
+
+  }
+}

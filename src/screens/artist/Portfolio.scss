@@ -1,0 +1,152 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+@mixin margin-vertical-middle {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.portfolio {
+
+  > .inner {
+    flex-direction: column;
+
+    .notice {
+      display: flex;
+      justify-content: space-between;
+      margin: 50px 0;
+      align-items: center;
+
+      .name {
+        p {
+          font-size: 30px;
+        }
+      }
+      .select-btn {
+        display: flex;
+
+        .btnbox {
+          display: flex;
+          align-items: center;
+          border: 1px solid #EAEAEA;
+          padding: 10px;
+          border-radius: 5px;
+
+          p {
+            margin-left: 10px;
+          }
+        }
+        .btnbox:hover {
+          cursor: pointer;
+          border: 1px solid #d3d3d3;
+          background-color: #EAEAEA;
+        }
+      }
+    }
+
+    .menu {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+
+      p {
+        font-size: 18px;
+      }
+      .divider {
+        width: 2px;
+        height: 15px;
+        background-color: #BDBDBD;
+        margin: 0 15px;
+      }
+      p:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      > img {
+        height: 200px;
+        margin: 5px;
+        transition: transform 0.7s ease;
+      }
+      > img:hover {
+        cursor: pointer;
+        transform: scale(1.03);
+      }
+
+    }
+
+    
+
+
+  }
+
+  .Modal-Detail {
+
+    .modal-backcover {
+      position: absolute;
+      width: 100vw;
+      min-height: 420vh;
+      top: 0;
+      left: 0;
+      z-index: 8;
+      opacity: 0.8;
+      background-color: #fff;
+    }
+    .modal-maincover {
+      position: absolute;
+      width: 90vw;
+      min-height: 50vh;
+      top: 100px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 9;
+      display: flex;
+      justify-content: center;
+      padding: 50px 0;
+    }
+  
+  }
+}  
+
+
+@media screen and (max-width : 1000px) { 
+  
+  .portfolio {
+    
+    .mobile-none {
+      display: none;
+    }
+    
+    > .inner {
+      height: fit-content;
+
+      .notice {
+      
+      }
+
+      .image-row {
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          width: 95%;
+          height: auto;
+        }
+      }
+
+     
+    }
+  }
+}

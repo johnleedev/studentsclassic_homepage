@@ -1,0 +1,93 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.artist {
+
+
+  > .inner {
+
+    .filter {
+      height: 100px;
+      @include middle;
+
+      .menu {
+        padding: 10px 20px;
+        border: 1px solid #e2e2e2;
+        border-radius: 5px;
+        margin: 0 10px;
+      }
+      .menu:hover {
+        cursor: pointer;
+        background-color: #e2e2e2;
+      }
+    }
+
+    .list-wrapper {
+      min-height: calc(100vh - 100px);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .artistbox {
+        transition: transform 0.5s ease;
+        margin: 5px;
+
+        h3 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .image {
+          width: 320px;
+          object-fit: cover;
+        }
+      }
+      .artistbox:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+      }
+    }
+    
+
+  }
+}  
+
+
+@media screen and (max-width : 800px) { 
+  
+  .artist {
+    
+    .mobile-none {
+      display: none;
+    }
+    
+    > .inner {
+      height: fit-content;
+
+      .filter {
+
+        .menu {
+          padding: 5px 10px;
+        }
+      }
+
+      .list-wrapper {
+        flex-direction: column;
+
+        .artistbox {
+          left: 0;
+          right: 0;
+          margin: 20px auto;
+        }
+      }
+      
+    }
+  }
+}
+
+
+
+

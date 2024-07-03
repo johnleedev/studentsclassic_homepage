@@ -1,0 +1,209 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.bookview {
+  width: 100%;
+  height: 80vh;
+  @include middle();
+  flex-direction: column;
+  border: 1px solid #EAEAEA;
+  
+  .bookcover {
+    width: 90%;
+    min-height: 70vh;
+    display: flex;
+    @include middle();
+    box-shadow: 2px 2px 8px #1B1B1B; /* 가로, 세로, 퍼지는 정도, 색상 */
+
+    .bookpage {
+      width: 50%;
+      height: 70vh;
+      background-color: #fff;
+      border-right: 1px solid #EAEAEA;
+      border-left: 1px solid #EAEAEA;
+      @include middle();
+      flex-direction: column;
+
+      > .image {
+        max-width: 85%;
+        max-height: 90%;
+        margin: 5px;
+      }
+      p {
+        padding: 0 10px;
+      }
+      
+
+      // profile -----------
+      .profile {
+        width: 90%;
+        @include middle();
+        flex-direction: column;
+
+        .image {
+          width: 300px;
+          margin: 20px 0;
+        }
+      }
+
+       // note -----------
+      .note {
+        @include middle();
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        height: 90%;
+        overflow: auto;
+
+        .image {
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: 80%;
+          margin-bottom: 10px;
+        }
+        .notebox {
+          display: flex;
+          flex-wrap: wrap;
+          padding-left: 20px;
+
+          p {
+            line-height: 25px;
+            font-size: 14px;
+          }
+        }
+      }
+      .profile2 {
+        width: 90%;
+        height: 90%;
+        overflow: auto;
+
+        > section {
+          margin: 20px 0;
+          padding: 0;
+
+          .rowbox {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 20px;
+      
+            p {
+              line-height: 25px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .career-cover {
+        padding: 10px 20px; 
+        height: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+
+        .career-box {
+          margin: 10px 0;
+
+          h4 {
+            font-size: 14px;
+            font-weight: bold;
+          }
+          .subbox {
+            margin-left: 20px;
+
+            p {
+              margin: 0px 20px;
+              font-size: 14px;
+            }
+          }
+          
+        }
+      }
+
+      
+      h1 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+  
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+  .bookbtnbox {
+    width: 90%;
+    height: 10vh;
+    @include middle();
+    margin-top: 10px;
+    
+    .bookpage {
+      padding: 5px 10px;
+      display: flex;
+
+      p {
+        margin: 0 3px;
+        font-size: 20px;
+      }
+    }
+    .bookbtn {
+      padding: 10px 15px;
+      border: 1px solid #EAEAEA;
+      @include middle();
+      transition: transform 0.7s ease;
+      margin: 0 5px;
+    }
+    .bookbtn:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      border: 1px solid #d4d4d4;
+    }
+  }
+}
+
+
+
+
+@media screen and (max-width : 1000px) { 
+  
+  .bookview {
+        
+    .bookcover {
+      width: 100%;
+
+      .bookpage {
+        width: 100%;
+        
+
+        > .image {
+          max-width: 100%;
+          max-height: 85%;
+        }
+       // note -----------
+        .note {
+          
+
+          .image {
+      
+          }
+          .notebox {
+            
+      
+            p {
+              line-height: 25px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    .bookbtnbox {
+     
+    }
+  }
+}

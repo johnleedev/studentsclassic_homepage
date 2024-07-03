@@ -1,0 +1,648 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.study {
+  padding-top: 50px;
+
+  > .inner {
+    display: flex;
+    justify-content: space-between;
+
+    .subpage__menu {
+      width: 20%;
+      margin-right: 32px;
+  
+      .subpage__menu__title {
+        position: relative;
+        font-size: 24px;
+        font-weight: 600;
+        color: #000;
+        padding-left: 30px;
+      }
+  
+      .subpage__menu__title:before {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: #33383f;
+      }
+  
+      .subpage__menu__list {
+          padding-top: 38px;
+    
+        .subpage__menu__item {
+          display: block;
+          width: 100%;
+          padding: 21px 0 21px 20px;
+          font-size: 18px;
+          color: #000;
+          border-bottom: 1px solid #cbcbcb;
+          line-height: 1;
+          box-sizing: border-box;
+        }
+    
+        .subpage__menu__item:first-child {
+            border-top: 1px solid #cbcbcb;
+        }
+    
+        .subpage__menu__item:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    
+        .subpage__menu__item--on {
+            color: #fff;
+            background: #33383f;
+        }
+    
+        .subpage__menu__item--on:hover {
+            text-decoration: none;
+        }
+        .subpage__menu__list__sub {
+          padding: 10px 20px;
+
+          .subpage__menu__item__sub {
+            margin: 15px 0;
+          }
+          .subpage__menu__item__sub:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+          .subpage__menu__item--on__sub {
+            font-weight: 600;
+            color: #33383f;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #33383f;
+          }
+        }
+      }
+  
+      .detail__Menu {
+        padding-top: 30px;
+
+        .back-btn-row {
+          .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px; 
+            border: 1px solid #cfcfcf;
+            margin: 10px 0;
+            @include middle();
+          }
+          .back-btn:hover {
+            cursor: pointer; 
+            border: 1px solid #333;
+          }
+        }
+
+        h3 {
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+        
+      }
+    }
+  
+    .subpage__main {
+      width: 75%;
+      min-height: 100vh;
+
+      .subpage__main__title {
+        display: flex;
+        justify-content: space-between;
+        
+        h3 {
+          font-size: 30px;
+          font-weight: 600;
+          color: #33383f;
+        }
+        .postBtnbox {
+          padding: 10px;
+          border: 1px solid #cbcbcb;
+          border-radius: 5px;
+        }
+        .postBtnbox:hover {
+          cursor: pointer;
+          background-color: #ececec;
+        }
+      }
+
+      .subpage__main__search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        
+        .subpage__main__select__box {
+          width: 20%;
+          display: flex;
+          align-items: center;
+        }
+        .subpage__main__search__box {
+          display: flex;
+          align-items: center;
+          width: 80%;
+
+          .inputdefault {
+            font-size: 15px;
+            font-weight: normal;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #E9E9E9;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding-left: 5px;
+          }
+          .width {
+            width: 70%;
+            text-align:left;
+          }
+          .buttons {
+            @include middle();
+        
+            .btn {
+              padding: 5px 10px;
+              border: 1px solid #E9E9E9;
+              margin: 0 5px;
+              border-radius: 5px;
+              background-color: #4f5460;
+              p {
+                color: #fff;
+              }
+            }
+            .btn:hover {
+              cursor: pointer;
+              border: 1px solid #333;
+            }
+          }
+        }
+        
+        
+      }
+
+      
+      .subpage__main__content {
+          padding-top: 30px;
+          font-size: 20px;
+          color: #333;
+          margin-bottom: 100px;
+
+        
+        // select-Btn 항목 선택 버튼
+        .select-Btn-Cover {
+          display: flex;
+          margin-bottom: 30px;
+
+          .select-Btn  {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #cfcfcf;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0 10px;
+  
+            .title {
+              border-bottom: 1px solid #cfcfcf;
+              margin-bottom: 5px;
+              p {
+                font-size: 24px;
+              }
+            }
+            .notice {
+              height: 60%;
+              p {
+                font-size: 18px;
+              }
+            }
+            .goBox {
+              display: flex;
+              justify-content: flex-end;
+  
+              .goBtn {
+                display: flex;
+                align-items: center;
+                padding: 3px 10px;
+                border: 1px solid #cfcfcf;
+                border-radius: 5px;
+  
+                p {
+                  font-size: 16px;
+                  margin-right: 10px;
+                }
+              }
+            }
+          }
+          .select-Btn:hover {
+            cursor: pointer;
+            border: 1px solid #aaaaaa;
+          }
+        }
+        
+        // 리스트 갯수 안내 ----------------
+        .listLength {
+          height: 30px;
+          
+          p {
+            font-size: 16px;
+          }
+        }
+        
+        // 목록 ----------------------------
+        .tbl_wrap {
+
+          .tbl_head01 {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0 5px;
+            background: #fff;
+            border-top: 1px solid #ececec;
+            border-bottom: 1px solid #ececec;
+ 
+            ul.titleRow {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              background: #f1f1f1;
+              border-bottom: 1px solid #cbcbcb;
+              border-top: 1px solid #cbcbcb;
+
+              li {
+                padding: 8px 0;
+                font-weight: bold;
+                color: #000;
+                font-size: 18px;
+                @include middle();
+                flex-direction: column;
+              }
+            }
+            ul.textRow,
+            ul.textRow2 {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              border-bottom: 1px solid #cbcbcb;
+              border-top: 1px solid #cbcbcb;
+              
+              li {
+                padding: 8px 0;
+                height: 50px;
+                color: #000;
+                font-size: 16px;
+                @include middle();
+                flex-direction: column;
+              }
+              li.td_title:hover {
+                cursor: pointer;
+                color: #33383f;
+              }
+            }
+            ul.textRow:hover {
+              cursor: pointer;
+              border-bottom: 1px solid #33383f;
+            }
+          }
+        }
+       
+        .btn-row {
+          width: 100%;
+          margin: 20px 0;
+          @include middle();
+
+          .btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px; 
+            cursor: pointer; 
+            margin: 10px;
+            
+            @include middle();
+          }
+        }
+
+        // detail ----------------------------
+        .detailBox  {
+          
+          .info {
+            background-color: #e7e7e7;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+  
+            p {
+              font-size: 18px;
+              margin-bottom: 5px;
+            }
+            p:last-child {
+              margin-bottom: 0px;
+            }
+  
+          }
+
+          .lyrics {
+            padding: 5px;
+            margin-bottom: 50px;
+            white-space: pre-line;
+
+            .lyricsRow {
+              display: flex;
+              font-size: 18px;
+
+              div {
+                margin-right: 10px;
+              }
+              div:hover {
+                cursor: pointer;
+                opacity: 0.7;
+              }
+            }
+          }
+          .detailTitle {
+            font-size: 12px;
+            margin-bottom: 20px;
+          }
+          .word {
+            padding: 5px;
+            margin-bottom: 50px;
+
+            .word-title {
+              display: flex;
+
+              p {
+                margin-right: 10px;
+                font-weight: 600;
+              }
+            }
+            .word-meaning {
+              padding-left: 10px;
+              margin-bottom: 10px;
+            }
+            .addMeaning-cover {
+              padding-left: 10px;
+
+              .addMeaning {
+                display: flex;
+                flex-wrap: wrap;
+
+                p {
+                  margin-right: 10px;
+                }
+              }
+            }
+            .resembleword {
+              padding-left: 10px;
+            }
+            
+          }
+          .emptyWord {
+            width: 100%;
+            height: 200px;
+            @include middle();
+
+            flex-direction: column;
+            p {
+              margin-bottom: 10px;
+            }
+          }
+          .trans {
+            white-space: pre-line;
+            font-size: 18px;
+          }
+        }
+        .warningBox {
+          padding: 15px;
+          background-color: rgba(215, 111, 35, 0.10);
+          margin-bottom: 20px;
+          font-size: 16px;
+        }
+
+        .userBox {
+          display: flex;
+          margin: 10px 0;
+          align-items: center;
+          p {
+            margin-left: 10px;
+            font-size: 20px;
+          }
+        }
+        .requestSelectBoxRow {
+          margin: 20px 0;
+          display: flex;
+          align-items: center;
+
+          .requestSelectBtn {
+            width: 100px;
+            @include middle();
+            font-size: 16px;
+            border: 1px solid #BDBDBD;
+            border-radius: 5px;
+            margin: 0 5px;
+            padding: 3px 5px;
+          }
+          .requestSelectBtn:hover {
+            cursor: pointer;
+            border: 1px solid #8f8f8f;
+          }
+        }
+
+        .addPostBox {
+          p {
+            margin-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+          }
+          p:before {
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '';
+            width: 3px;
+            height: 15px;
+            background: #334968;
+          }
+          > .inputdefault {
+            width: 100%;
+            font-size: 15px;
+            font-weight: normal;
+            height: 40px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            border: 1px solid #E9E9E9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          }
+        }
+        .buttonbox {
+          width: 100%;
+          height: 50px;
+          margin-top: 10px;
+          @include middle;
+  
+          .button {
+            width: 300px;
+            height: 100%;
+            background-color: #33383f;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            @include middle;
+          }
+          .button:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+      
+    }
+  }
+}
+
+@media (max-width: 1000px) { 
+  .study {
+  
+    > .inner {
+      flex-direction: column;
+
+      .subpage__menu { 
+        width: 100%;
+
+        .subpage__menu__list {
+
+          .subpage__menu__list__sub {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .subpage__menu__item__sub {
+              width: 25%;
+              @include middle();
+              padding: 0;
+            }
+          }
+        }
+      }
+      .subpage__main { 
+        width: 100%;
+
+        .subpage__main__title {
+          margin-top: 30px;
+          margin-bottom: 20px;
+        }
+        .subpage__main__search {
+          flex-direction: column;
+          align-items: flex-start;
+
+          .subpage__main__select__box {
+            width: 100%;
+          }
+          .subpage__main__search__box {
+            width: 100%;
+            
+            .width {
+              width: 60%;
+            }
+          }
+        }
+
+        .subpage__main__content {
+          font-size: 14px;
+          padding-top: 14px;
+
+          .tbl_wrap {
+
+            .tbl_head01 {
+  
+   
+              ul.titleRow {
+                 li {
+                  font-size: 14px;
+                }
+                
+              }
+              ul.textRow {
+   
+                li {
+                   font-size: 14px;
+                }
+               
+              }
+            }
+          }
+          .top_box {
+           
+          
+            .left {
+              
+              h1 {
+                font-size: 18px;
+              }
+              p {
+                font-size: 15px;
+              }
+            }
+  
+            .right {
+              
+
+              .contentcover {
+
+                .box {
+                  margin-left: 5px;
+
+                  p {
+                    font-size: 13px;
+                    margin-left: 2px;
+                  }
+                }
+                
+              }
+            }
+         
+          }
+          .view_content {
+            
+            
+            .textcover {
+  
+              p {
+                font-size: 16px;
+              }
+            }
+            .btn-box {
+  
+              .btn {
+                
+                p {
+
+                }
+              }
+            }
+          }
+          .warningBox {
+            font-size: 14px;
+          }
+
+          .userBox {
+            p {
+              font-size: 18px;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
+

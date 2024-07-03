@@ -1,0 +1,73 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+@mixin margin-vertical-middle {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.detail {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+
+  // close버튼
+  .close {
+    text-align: end;
+    height: 50px;
+  }
+  .close:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+ 
+  // inner
+  > .inner {
+    @include middle();
+    flex-direction: column;
+
+    .name {
+      padding-left: 50px;
+      font-size: 25px;
+      margin-bottom: 50px;
+    }
+
+    img {
+      max-width: 1200px;
+      max-height: 100vh;
+    }
+
+ }
+}  
+
+
+@media screen and (max-width : 1300px) { 
+  
+  .detail { 
+    width: 95vw;
+    padding: 25px 10px;
+
+    .close {
+      margin-right: 10px;
+    }
+
+    > .inner {
+      width: 90vw;
+
+      .name {
+        width: 85vw;
+        padding-left: 0;
+      }
+
+      img {
+        width: 90vw;
+      }
+    }
+
+  }
+}
