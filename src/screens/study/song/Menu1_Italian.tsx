@@ -54,7 +54,7 @@ export default function Menu1_Italian(props:any) {
               <SelectMenu title='영미' tabNum={4} url={'/song/english'} />
               <SelectMenu title='러시아' tabNum={5} url={'/song/russian'} />
               <SelectMenu title='한국' tabNum={6} url={'/song/korea'} />
-              <SelectMenu title='기타' tabNum={7} url={'/song/etc'} />
+              
             </div>
             <div
               style={{borderTop:"1px solid #cbcbcb"}}

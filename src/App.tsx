@@ -16,7 +16,6 @@ import Logister from './screens/login/Logister';
 import LoginSns from './screens/login/LoginSns';
 import MypageMain from './screens/mypage/MypageMain';
 
-
 function App() {
 
   return (

@@ -24,8 +24,8 @@ export default function Trans (props:any) {
   }
 
 
-  const [sort, setSort] = useState('Aria');
-  const [nation, setNation] = useState('German');
+  const [sort, setSort] = useState('aria');
+  const [language, setLanguage] = useState('');
   const [postListOrigin, setPostListOrigin] = useState<postList[]>([]);
   const [postList, setPostList] = useState<postList[]>([]);
   const [postListLength, setPostListLength] = useState(0);
@@ -38,14 +38,14 @@ export default function Trans (props:any) {
   const [refresh, setRefresh]  = useState<boolean>(false);
   const [wordList, setWordList] = useState<wordList[]>([]);
   
-
+  // 리스트 ---------------------------------------------------------------------
   // 게시글 가져오기
   const fetchPosts = async () => {
-    const res = await axios.get(`${MainURL}/studyhome/getdataarias/aria`)
+    const res = await axios.get(`${MainURL}/lyricssave/getdataarias/${sort}`)
     if (res) {
-      let copy22: any = [...res.data];
-      // const copy = copy22.filter((e:any)=> e.trans !== null );
-      const copy = copy22.filter((e:any)=> e.lyrics !== '' && (e.trans === null || e.trans === '') && e.language === 'German');
+      let copy: any = [...res.data];
+      // const copy = copy2.filter((e:any)=> e.summary === '');
+      // const copy = copy2.filter((e:any)=> e.language === 'Latin' );
       setPostList(copy);
       setPostListOrigin(copy);
       setPostListLength(copy.length);
@@ -61,9 +61,11 @@ export default function Trans (props:any) {
   const handleRevise = (item : any) => {
     window.scrollTo(0, 200);
     setPostId(item.id);
-    setAria_title(item.aria_title);
+    setAria_title(item.song_title);
     setLyrics(item.lyrics);
     setTrans(item.trans);
+    setLanguage(item.language);
+    fetchPosts22();
   };
 
   const onChangeInputLyrics = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -77,13 +79,14 @@ export default function Trans (props:any) {
 
   const registerRevise = async () => {
     try {
-      const requestReviese = axios.post(`${MainURL}/studyhome/dataariastrans`, {
+      const requestReviese = axios.post(`${MainURL}/lyricssave/dataariastrans`, {
         postId : postId,
         lyrics: lyrics,
         trans : trans
       });
       let responsesReviese = await requestReviese;
       if (responsesReviese.data) {
+        registerPost();
         setRefresh(!refresh);
         alert('수정되었습니다.');
         setLyrics('')
@@ -98,8 +101,8 @@ export default function Trans (props:any) {
 
   const registerDelete = async (ID:any) => {
     try {
-      const requestDelete = axios.post(`${MainURL}/studyhome/dataariasdelete`, {
-        postId : postId
+      const requestDelete = axios.post(`${MainURL}/lyricssave/dataariasdelete`, {
+        postId : ID
       });
   
       let responsestDelete = await requestDelete;
@@ -130,31 +133,17 @@ export default function Trans (props:any) {
     return content;
   };
 
-  // 파트 변경
-  const changePart = (text:string) => {
-    setSelectPart(text);
-    const copy = [...postListOrigin];
-    const result = copy.filter((e:any)=> e.language.includes(text))
-    setPostListLength(result.length);
-    setPostList(result);
-  };
-
   // 게시글 가져오기
   const fetchPosts22 = async () => {
-    // const res = await axios.get(`https://www.studentsclassic.com/study/getworddataadmin/${nation}`)
-    const res = await axios.get(`${MainURL}/lyricssave/getwordall222/${nation}`)
+    const res = await axios.get(`${MainURL}/lyricssave/getwordall222/${language}`)
     if (res) {
       let copy: any = [...res.data];
       setWordList(copy);
     }
   };
 
-  useEffect(() => {
-    fetchPosts22();
-  }, [nation]);  
-
   const registerPost = async () => {
-    if (sort && nation) {
+    if (sort && language) {
       try {
         const replace = lyrics.replaceAll('\n', ' ').replaceAll(',', ' ').replaceAll('.', ' ').replaceAll('!', ' ').replaceAll("'", "\' ")
                         .replaceAll('.', ' .').replaceAll('´', '´ ').replaceAll('’', '’ ').replaceAll('?', ' ?').replaceAll('---', ' ');
@@ -162,7 +151,9 @@ export default function Trans (props:any) {
         const copy2 = copy.filter((e:any)=> e !== '' && e !== '?' && e !== ',' && e !== '.' && e !== '!' && e !== ''
                                 && e !== ':' && e !== ';' && e !== '´' && e !== '’');
         const result = copy2.filter((item, index, array) => array.indexOf(item) === index);
-        const resultWithoutDuplicates = await result.filter((item) => !wordList.some((postItem:any) => postItem.word.toLowerCase() === item.toLowerCase()));
+        const resultWithoutDuplicates = await result.filter(item => 
+          !wordList.some(postItem => postItem.word && postItem.word.toLowerCase() === item.toLowerCase())
+        );
         const wordNum = resultWithoutDuplicates.length;
 
         console.log('result', result.length);
@@ -173,7 +164,7 @@ export default function Trans (props:any) {
           const item = resultWithoutDuplicates[index];
           try {
             const response = await axios.post(`${MainURL}/lyricssave/insertword`, {
-              word : item, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
+              language: language, word : item, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
             });
             setRefresh(!refresh);
             console.log(response.data);
@@ -192,66 +183,53 @@ export default function Trans (props:any) {
     }
     
   };
-  
 
-  // const registerPost = async () => {
-  //   if (sort && nation) {
-  //     try {
-  //       const replace = lyrics.replaceAll('\n', ' ').replaceAll(',', ' ').replaceAll('.', ' ').replaceAll('!', ' ').replaceAll("'", "\' ")
-  //                       .replaceAll('.', ' .').replaceAll('´', '´ ').replaceAll('’', '’ ').replaceAll('?', ' ?');
-  //       const copy = replace.split(' ');
-  //       const copy2 = copy.filter((e:any)=> e !== '' && e !== '?' && e !== ',' && e !== '.' && e !== '!' && e !== ''
-  //                               && e !== ':' && e !== ';' && e !== '´' && e !== '’');
-  //       const result = copy2.filter((item, index, array) => array.indexOf(item) === index);
-  //       const resultWithoutDuplicates = await result.filter((item) => !wordList.some((postItem:any) => postItem.word.toLowerCase() === item.toLowerCase()));
-  //       const wordNum = resultWithoutDuplicates.length;
+  // 단어 입력하기
+  const inputwordsave = async () => {
+    const response = await axios.post(`${MainURL}/lyricssave/wordinputauto`, {language : language});
+    const wordNum = response.data.length;
+    for (let index = 0; index < response.data.length; index++) {
+      const item = response.data[index];
+      try {
+        const response = await axios.post(`${MainURL}/lyricssave/postmeaning`, {
+          nation : language, word : item.word, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
+        });
+        setRefresh(!refresh);
+        console.log(response.data);
+      } catch (error) {
+        console.error(`에러 발생 - 단어: ${item}`, error);
+      }
+    }
+    alert('완료되었습니다.');
+  };
 
-  //       console.log('result', result.length);
-  //       console.log('resultWithoutDuplicates', resultWithoutDuplicates.length);
-  
-   
-  //       for (let index = 0; index < resultWithoutDuplicates.length; index++) {
-  //         const item = resultWithoutDuplicates[index];
-  //         try {
-  //           const response = await axios.post(`${MainURL}/lyricssave/postmeaning`, {
-  //             nation : nation, word : item, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
-  //           });
-  //           setRefresh(!refresh);
-  //           console.log(response.data);
-  //         } catch (error) {
-  //           console.error(`에러 발생 - 단어: ${item}`, error);
-  //         }
-  //       }
-  //       alert('완료되었습니다.');
-  
+
+  // 전체 삭제하기
+  const deleteAll = async () => {
     
-  //     } catch (error) {
-  //       console.error('에러 발생:', error);
-  //     }
-  //   } else {
-  //     alert('형식과 언어를 선택해주세요')
-  //   }
-    
-  // };
-
+    const wordNum = postList.length;
+    for (let index = 0; index < postList.length; index++) {
+      const item = postList[index];
+      try {
+        const response = await axios.post(`${MainURL}/lyricssave/deleteall`, {
+          sort: sort, postId : item.id, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
+        });
+        setRefresh(!refresh);
+        console.log(response.data);
+      } catch (error) {
+        console.error(`에러 발생 - 단어: ${item}`, error);
+      }
+    }
+    alert('완료되었습니다.');
+  };
+  
 
   return  (
     <div className="apply">
 
       <div className="inner">
 
-        {/* <div className="inputbox">
-          <div className='name'>
-            <p>언어</p>
-          </div>
-          <Select
-            className='input'
-            value={selectedNationOption}
-            onChange={handleSelectNationChange}
-            options={nationOptions}
-          />
-        </div> */}
-
+  
         <div className="inputbox">
           <div className='trans'>
             <p>{aria_title}</p>
@@ -271,7 +249,6 @@ export default function Trans (props:any) {
           <div className="button" 
             onClick={()=>{
               registerRevise();
-              registerPost();
             }}>
             <p>수정하기</p>
           </div>
@@ -286,10 +263,26 @@ export default function Trans (props:any) {
           </div>
         </div> */}
 
+        <div className="inputbox">
+          <div className='name' style={{border:'1px solid #333'}}
+            onClick={inputwordsave}
+          >
+            <p>전체 입력</p>
+          </div>
+        </div>
+
+        <div className="inputbox">
+          <div className='name' style={{border:'1px solid #333'}}
+            onClick={deleteAll}
+          >
+            <p>전체삭제</p>
+          </div>
+        </div>
+
         <DropdownBox
           widthmain='100px'
           height='35px'
-          selectedValue={selectPart}
+          selectedValue={language}
           options={[
             {value: "all", label:'전체'},
             {value: "Italian", label:'이태리'},
@@ -297,12 +290,9 @@ export default function Trans (props:any) {
             {value: "French", label:'프랑스'},
             {value: "English", label:'영미'},
             {value: "Russian", label:'러시아'},
-            {value: "Spanish", label:'스페인'},
-            {value: "Czech", label:'체코'},
-            {value: "Latin", label:'라틴'},
             {value: "etc", label:'기타'},
           ]}
-          handleChange={(e:any)=>{changePart(e.target.value)}}
+          handleChange={(e:any)=>{setLanguage(e.target.value)}}
         />
 
         <p>{postListLength}개</p>
@@ -311,7 +301,7 @@ export default function Trans (props:any) {
           <div className='rows rowtitle'>
             <div className='word-id'>ID</div>
             <div className='word-word'>곡목</div>
-            <div className='word-meaning'>가사</div>
+            <div className='word-meaning'>언어</div>
             <div className='word-meaning'>번역</div>
             <div className='word-revise'>수정</div>
             <div className='word-delete'>삭제</div>
@@ -321,8 +311,8 @@ export default function Trans (props:any) {
               return (
                 <div className='rows' key={index}>
                   <div className='word-id'>{item.id}</div>
-                  <div className='word-word'>{item.song_title}</div>
-                  <div className='word-word'>{item.opera_title}</div>
+                  <div className='word-word'>{item.composer}</div>
+                  <div className='word-word'>{item.language}</div>
                   <div className='word-meaning'>{renderPreview(item.lyrics)}</div>
                   <div className='word-meaning'>{renderPreviewko(item.trans)}</div>
                   <div className='word-revise'>

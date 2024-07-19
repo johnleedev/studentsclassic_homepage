@@ -17,9 +17,29 @@ export default function Detail() {
 
   let navigate = useNavigate();
   const location = useLocation();
-  const propsData = location.state;
-  const images = location.state.images ? JSON.parse(location.state.images) : [];
+  const propsData = location.state.data;
+  const propsSort = location.state.sort;
+  const propsMenuNum = location.state.menuNum;
+  const images = location.state.data.images ? JSON.parse(location.state.data.images) : [];
   const userData = useRecoilValue(recoilUserData);
+
+  const [currentMenu, setCurrentMenu] = useState(propsMenuNum);
+  interface SelectMenuProps {
+    menuNum : number;
+    title: string;
+    url : string;
+  }
+  const SelectMenu: React.FC<SelectMenuProps> = ({ menuNum, title, url}) => {
+    return (
+      <div onClick={()=>{
+        setCurrentMenu(menuNum);
+        navigate(`/community${url}`)
+      }}
+        className={currentMenu === menuNum ? "subpage__menu__item subpage__menu__item--on" : "subpage__menu__item"}>
+        {title}
+      </div>
+    )    
+  };
 
   interface ListProps {
     id : number;
@@ -35,7 +55,7 @@ export default function Detail() {
   const [isLikedLength, setIsLikedLength] = useState(0);
   const [checkIsLiked, setCheckIsLiked] = useState<boolean>(false);
 
-  const fetchCommentsDatas = async () => {
+  const fetchDatas = async () => {
     const resComment = await axios.get(`${MainURL}/board/getcomments/${propsData.id}`)
     if (resComment.data) {
       const copy = resComment.data;
@@ -52,7 +72,7 @@ export default function Detail() {
     }
   }
   useEffect(()=>{
-    fetchCommentsDatas();
+    fetchDatas();
   }, [refresh]);
 
   // 좋아요 싫어요 등록 함수 ----------------------------------------------
@@ -158,29 +178,32 @@ export default function Detail() {
 
         {/* 왼쪽 메뉴바 */}
         <div className="subpage__menu">
-          <div className="subpage__menu__title">네트워크</div>
+          <div className="subpage__menu__title">커뮤니티</div>
           <div className="subpage__menu__list">
-            <div
-              onClick={()=>{navigate('/community');}}
-              className="subpage__menu__item subpage__menu__item--on"
-            >
-              자유게시판
-            </div>
+            <SelectMenu title='공지사항' menuNum={1} url={'/'}/>
+            <SelectMenu title='콩쿨정보' menuNum={2} url={'/concours'}/>
+            <SelectMenu title='구인정보' menuNum={3} url={'/recruit'}/>
+            <SelectMenu title='자유게시판' menuNum={4} url={'/free'}/>
+            <SelectMenu title='등업신청' menuNum={5} url={'/free'}/>
           </div>
         </div>
 
         <div className="subpage__main">
           <div className="subpage__main__title">
-            <h3>자유게시판</h3>
+            {propsSort === 'notice' && <h3>공지사항</h3>}
+            {propsSort === 'concours' && <h3>콩쿨정보</h3>}
+            {propsSort === 'recruit' && <h3>구인정보</h3>}
+            {propsSort === 'free' && <h3>자유게시판</h3>}
+            {propsSort === 'graderequest' && <h3>등업신청</h3>}
             <div style={{display:'flex'}}>
               <div className='postBtnbox'
                 style={{marginRight:'10px'}}
-                onClick={()=>{navigate('/community');}}
+                onClick={()=>{navigate(-1);}}
               >
                 <p>목록</p>
               </div>
               {
-                userData.userName === propsData.userName &&
+                (propsSort !== 'graderequest' && userData.userName === propsData.userName) &&
                 <div className='postBtnbox'
                   style={{marginRight:'10px'}}
                   onClick={deletePost}
@@ -188,14 +211,17 @@ export default function Detail() {
                   <p>삭제</p>
                 </div>
               }
-              <div className='postBtnbox'
-                onClick={()=>{
-                  navigate('/community/post');  
-                  
-                }}
-              >
-                <p>글쓰기</p>
-              </div>
+              {
+                propsSort !== 'notice' &&
+                <div className='postBtnbox'
+                  onClick={()=>{
+                    navigate('/community/post');  
+                    
+                  }}
+                >
+                  <p>글쓰기</p>
+                </div>
+              }
             </div>
           </div>
           
@@ -216,10 +242,13 @@ export default function Detail() {
                     <MdOutlineRemoveRedEye color='#325382'/>
                     <p>{propsData.views}</p>
                   </div>
-                  <div className="box">
-                    <FaRegThumbsUp color='#325382' />
-                    <p>{isLikedLength > 0 ? isLikedLength : 0}</p>
-                  </div>
+                  {
+                    propsSort !== 'graderequest' &&
+                    <div className="box">
+                      <FaRegThumbsUp color='#325382' />
+                      <p>{isLikedLength > 0 ? isLikedLength : 0}</p>
+                    </div>
+                  }
                 </div>
               </div>
             </div>
@@ -238,6 +267,8 @@ export default function Detail() {
                 <p>{propsData.content}</p>
               </div>
 
+              {
+              propsSort !== 'graderequest' &&
               <div className="btn-box">
                 <div className="btn"
                   onClick={()=>{
@@ -249,65 +280,71 @@ export default function Detail() {
                   <p>좋아요</p>
                 </div>
               </div>
-
+              }
             </div>
 
-            <div style={{width:'100%', height:'2px', backgroundColor:'#EAEAEA', margin:'10px 0'}}></div>
+            {
+              propsSort !== 'graderequest' &&
+              <>
+                <div style={{width:'100%', height:'2px', backgroundColor:'#EAEAEA', margin:'10px 0'}}></div>
 
-            <div className="userBox">
-              <FaPen color='#334968' />
-              <p>{userData.userName} {userData.userSchool}{userData.userSchNum} {userData.userPart}</p>
-            </div>
-            <div className="addPostBox">
-              <div style={{display:'flex', justifyContent:'space-between', alignItems:'end'}}>
-                <p>댓글 입력하기</p>
-                <h5 style={{fontSize:'12px'}}>* 최대 500자</h5>
-              </div>
-              <textarea 
-                className="textarea textareacomment"
-                value={inputComments}
-                maxLength={500}
-                onChange={(e)=>{setInputComments(e.target.value)}}
-              />
-            </div>
-
-            <div className="buttonbox">
-              <div className="button"
-              onClick={()=>{
-                registerComment();
-              }}
-              >
-                <p>댓글 입력</p>
-              </div>
-            </div>
-
-
-            { commentsList.length > 0 
-              ?
-              commentsList.map((item:any, index:any)=>{
-                return (
-                  <div className="comments_box" key={index}>
-                    <div className="topBox">
-                      <div className="namebox">
-                        <h3>{item.userName}</h3>
-                        <p>{item.userSchool}{item.userSchNum} {item.userPart}</p>
-                        <p style={{marginLeft:'20px'}}>{DateFormmating(item.date)}</p>
-                      </div>
-                      <div onClick={()=>{deleteComment(item);}}>
-                        <CiCircleMinus color='#FF0000' size={20}/>
-                      </div>
-                    </div>
-                    <div className="textbox">
-                      <p>{item.content}</p>
-                    </div>
+                <div className="userBox">
+                  <FaPen color='#334968' />
+                  <p>{userData.userName} {userData.userSchool}{userData.userSchNum} {userData.userPart}</p>
+                </div>
+                <div className="addPostBox">
+                  <div style={{display:'flex', justifyContent:'space-between', alignItems:'end'}}>
+                    <p>댓글 입력하기</p>
+                    <h5 style={{fontSize:'12px'}}>* 최대 500자</h5>
                   </div>
-                )
-              })
-              :
-              <div className="comments_box">
-                <p>입력된 댓글이 없습니다.</p>
-              </div>
+                  <textarea 
+                    className="textarea textareacomment"
+                    value={inputComments}
+                    maxLength={500}
+                    onChange={(e)=>{setInputComments(e.target.value)}}
+                  />
+                </div>
+
+                <div className="buttonbox">
+                  <div className="button"
+                  onClick={()=>{
+                    registerComment();
+                  }}
+                  >
+                    <p>댓글 입력</p>
+                  </div>
+                </div>
+
+
+                { commentsList.length > 0 
+                  ?
+                  commentsList.map((item:any, index:any)=>{
+                    return (
+                      <div className="comments_box" key={index}>
+                        <div className="topBox">
+                          <div className="namebox">
+                            <h3>{item.userName}</h3>
+                            <p>{item.userSchool}{item.userSchNum} {item.userPart}</p>
+                            <p style={{marginLeft:'20px'}}>{DateFormmating(item.date)}</p>
+                          </div>
+                          <div onClick={()=>{deleteComment(item);}}>
+                            <CiCircleMinus color='#FF0000' size={20}/>
+                          </div>
+                        </div>
+                        <div className="textbox">
+                          <p>{item.content}</p>
+                        </div>
+                      </div>
+                    )
+                  })
+                  :
+                  <div className="comments_box">
+                    <p>입력된 댓글이 없습니다.</p>
+                  </div>
+                }
+              </>
             }
+            
           </div>
           
         </div>

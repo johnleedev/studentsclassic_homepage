@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Words from '../../work/Words';
 
 import Menu1_Arias from './opera/Menu1_Arias';
 import Menu2_Duets from './opera/Menu2_Duets';
@@ -20,7 +19,7 @@ import Menu3_French from './song/Menu3_French';
 import Menu4_English from './song/Menu4_English';
 import Menu5_Russian from './song/Menu5_Russian';
 import Menu6_Korea from './song/Menu6_Korea';
-import Menu7_Etc from './song/Menu7_Etc';
+
 import SongsDetail from './song/SongsDatail';
 import WordDetail from './WordDetail';
 import RequestList from './RequestList';
@@ -48,12 +47,10 @@ export default function MainStudy() {
         <Route path="/song/english" element={<Menu4_English/>}/>
         <Route path="/song/russian" element={<Menu5_Russian/>}/>
         <Route path="/song/korea" element={<Menu6_Korea/>}/>
-        <Route path="/song/etc" element={<Menu7_Etc/>}/>
         <Route path="/songsdetail" element={<SongsDetail/>}/>
         <Route path="/requestlist" element={<RequestList/>}/>
         <Route path="/requestpost" element={<RequestPost/>}/>
         <Route path="/worddetail" element={<WordDetail/>}/>
-
       </Routes>
     </div>
   );

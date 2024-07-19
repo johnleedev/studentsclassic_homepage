@@ -1,12 +1,10 @@
 // 우리집
 // let MainURL = "http://192.168.0.45:8000"
 
-// 실론투어 사무실
-// let MainURL = "http://192.168.0.66:8000"
+// 대구공대 사무실
+// let MainURL = "http://172.30.1.16:8000"
 
-// let MainURL = "https://www.studentsclassic.com";
-
-let MainURL = "https://www.studentsnursing.com"
+let MainURL = "https://www.studentsclassic.com";
 
 
 export default MainURL

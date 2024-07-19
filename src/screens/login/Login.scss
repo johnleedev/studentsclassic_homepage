@@ -102,6 +102,12 @@
         border-bottom: 2px solid #33383f;
         font-weight: 600;
       }
+      .userCheckBox {
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
       
       .inputbox {
         width: 450px;
@@ -109,30 +115,32 @@
         @include middle();
         flex-direction: column;
 
-
-        .snsloginbox {
-          width: 400px;
-          margin: 10px 0;
-          border: 1px solid #dedede;
-          border-radius: 5px;
-          padding: 10px;
-          display: flex;
-          align-items: center;
-
-          img {
-            width: 30px;
-            height: 30px;
+        .link {
+          .snsloginbox {
+            width: 400px;
+            margin: 10px 0;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+  
+            img {
+              width: 30px;
+              height: 30px;
+            }
+            p {
+              margin: 0;
+              height: 30px;
+              @include middle();
+            }
           }
-          p {
-            margin: 0;
-            height: 30px;
-            @include middle();
+          .snsloginbox:hover {
+            cursor: pointer;
+            border: 1px solid #979797;
           }
         }
-        .snsloginbox:hover {
-          cursor: pointer;
-          border: 1px solid #979797;
-        }
+        
 
         p {
           width: 400px;
@@ -340,7 +348,12 @@
               width: 100%;
             }
           }
-
+          .link {
+            width: 90%;
+            .snsloginbox {
+              width: 90%;
+            }
+          }
         }
 
         .buttonbox {

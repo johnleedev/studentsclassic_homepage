@@ -70,16 +70,16 @@
 
           .subpage__menu__item__sub {
             margin: 15px 0;
+            color: #aaa;
           }
           .subpage__menu__item__sub:hover {
             text-decoration: underline;
             cursor: pointer;
           }
           .subpage__menu__item--on__sub {
-            font-weight: 600;
+            font-weight: bold;
             color: #33383f;
             padding-bottom: 5px;
-            border-bottom: 2px solid #33383f;
           }
         }
       }
@@ -282,6 +282,13 @@
                 @include middle();
                 flex-direction: column;
               }
+              div.titleRow_sub {
+                display: flex;
+                
+                li.th_line {
+                  width: 50%;
+                }
+              }
             }
             ul.textRow,
             ul.textRow2 {
@@ -302,6 +309,12 @@
               li.td_title:hover {
                 cursor: pointer;
                 color: #33383f;
+              }
+              div.titleRow_sub {
+                display: flex;
+                li.td_line {
+                  width: 50%;
+                }
               }
             }
             ul.textRow:hover {
@@ -549,7 +562,7 @@
             width: 100%;
             
             .width {
-              width: 60%;
+              width: 50%;
             }
           }
         }
@@ -564,17 +577,37 @@
   
    
               ul.titleRow {
-                 li {
+                li {
                   font-size: 14px;
                 }
-                
+                div.titleRow_sub {
+                  flex-direction: column;
+                  
+                  li.th_line {
+                    align-items: end;
+                    width: 100%;
+                    padding: 0;
+                    padding-right: 5px;
+                  }
+                }
               }
               ul.textRow {
    
                 li {
                    font-size: 14px;
                 }
-               
+                div.titleRow_sub {
+                  flex-direction: column;
+                  align-items: end;
+
+                  li.td_line {
+                    align-items: end;
+                    width: 100%;
+                    padding: 0;
+                    padding-right: 5px;
+                    height: 30px;
+                  }
+                }
               }
             }
           }

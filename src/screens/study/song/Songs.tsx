@@ -52,7 +52,7 @@ export default function Songs(props:any) {
     if (word.length < 3) {
       alert('3글자이상 입력해주세요')
     } else {
-      axios.get(`${MainURL}/study/getdataariasearch/${props.sort}/${word}`).then((res) => {
+      axios.get(`${MainURL}/study/getdatasongsearch/${props.language}/${word}`).then((res) => {
         if (res.data) {
           setIsResdataFalse(false);
           let copy: any = [...res.data.resultData];
@@ -119,19 +119,21 @@ export default function Songs(props:any) {
         <div className="subpage__main__search__box">
           <p style={{marginRight:'10px'}}>검색:</p>
           <input className="inputdefault" type="text" style={{width:'50%', textAlign:'left'}} 
-            value={word} onChange={(e)=>{setWord(e.target.value)}} placeholder='아리아명, 오페라명 검색'
+            value={word} onChange={(e)=>{setWord(e.target.value)}} placeholder='아리아명, 작곡가명 검색'
+            
             />
           <div className="buttons" style={{margin:'20px 0'}}>
             <div className="btn" 
-            onClick={handleWordSearching}>
+              onClick={handleWordSearching}>
               <p>검색</p>
             </div>
           </div>
           <div className="buttons" style={{margin:'20px 0'}}>
             <div className="btn" 
             onClick={()=>{
-              setWord('');
-              
+                setWord('');
+                setCurrentPage(1);
+                fetchPosts();
               }}>
               <p>초기화</p>
             </div>

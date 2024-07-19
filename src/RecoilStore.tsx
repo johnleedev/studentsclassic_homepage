@@ -13,9 +13,28 @@ export const recoilUserData = atom({
     userName : '',
     userSchool: '',
     userSchNum : '',
-    userPart: ''
+    userPart: '',
+    grade: ''
   },
 });
 
 
+export const recoilKaKaoLoginData = atom({
+  key: "kakaoLoginData",
+  default: {
+    APIKEY : 'ece291900807a6c37ef7506bac5c1c40',
+    REDIRECT_URI_Auth : 'https://www.studentsclassic.com/loginsns'
+    // REDIRECT_URI_Auth : 'http://localhost:3000/loginsns'
+  },
+});
 
+
+export const recoilNaverLoginData = atom({
+  key: "naverLoginData",
+  default: {
+    CLIENTID : 'NJivxK1ooCxnPodocRjp',
+    SECRET : 'SkpvsxS_Ba',
+    REDIRECT_URI_Auth : 'https://www.studentsclassic.com/loginsns'
+    // REDIRECT_URI_Auth : 'http://localhost:3000/loginsns'
+  },
+});

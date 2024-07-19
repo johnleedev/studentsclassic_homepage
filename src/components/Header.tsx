@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const setUserData = useSetRecoilState(recoilUserData);
   
   const menus = [
-    { title: "소개", url:"/company/application", links: [{title:"app", subUrl:"/company/application", sort:'main'}] },
+    { title: "소개", url:"/company/application", links: [{title:"app", subUrl:"/company/application"}] },
     // { title: "성악가들", url:"/network", links: [{title:"Sop.", subUrl:"/network"}] },
     { title: "스터디", url:"/study", 
       links: [
@@ -21,7 +21,15 @@ const Header: React.FC = () => {
         {title:"곡등록요청", subUrl:"/study/requestlist"},
       ]
     },
-    { title: "커뮤니티", url:"/community", links: [{title:"자유게시판", subUrl:"/community", sort:'main'}] },
+    { title: "커뮤니티", url:"/community", 
+      links: [
+        {title:"공지사항", subUrl:"/community"},
+        {title:"콩쿨정보", subUrl:"/community/concours"},
+        {title:"구인정보", subUrl:"/community/recruit"},
+        {title:"자유게시판", subUrl:"/community/free"},
+        {title:"등업신청", subUrl:"/community/graderequest"},
+      ] 
+    },
   ];
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -44,7 +52,8 @@ const Header: React.FC = () => {
       userName : '',
       userSchool: '',
       userSchNum : '',
-      userPart: ''
+      userPart: '',
+      grade: ''
     })
     alert('로그아웃 되었습니다.')
     navigate('/');

@@ -45,20 +45,14 @@ export default function Roles(props:any) {
     fetchPosts();
   }, [selectLanguage, currentPage]);  
 
-  // 필터 ------------------------------------------------------------------------
-
-  // 언어 변경
-  const changeLanguage = (text:string) => {
-    setSelectLanguage(text);
-  };
-
+ 
   // 글자 검색 ------------------------------------------------------
 	const handleWordSearching = async () => {
     setList([]);
     if (word.length < 3) {
       alert('3글자이상 입력해주세요')
     } else {
-      axios.get(`${MainURL}/study/getdataoperasearch/${props.sort}/${word}`).then((res) => {
+      axios.get(`${MainURL}/study/getdatarolesearch/${word}`).then((res) => {
         if (res.data) {
           setIsResdataFalse(false);
           let copy: any = [...res.data.resultData];

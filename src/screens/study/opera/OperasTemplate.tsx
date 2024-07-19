@@ -139,11 +139,7 @@ export default function OperasTemplate(props:any) {
               {value: "German", label:'독일'},
               {value: "French", label:'프랑스'},
               {value: "English", label:'영미'},
-              {value: "Russian", label:'러시아'},
-              {value: "Spanish", label:'스페인'},
-              {value: "Czech", label:'체코'},
-              {value: "Latin", label:'라틴'},
-              {value: "etc", label:'기타'},
+              {value: "Russian", label:'러시아'}
             ]}
             handleChange={(e:any)=>{changeLanguage(e.target.value)}}
           />

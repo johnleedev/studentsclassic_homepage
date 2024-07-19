@@ -141,11 +141,7 @@ export default function Arias(props:any) {
               {value: "German", label:'독일'},
               {value: "French", label:'프랑스'},
               {value: "English", label:'영미'},
-              {value: "Russian", label:'러시아'},
-              {value: "Spanish", label:'스페인'},
-              {value: "Czech", label:'체코'},
-              {value: "Latin", label:'라틴'},
-              {value: "etc", label:'기타'},
+              {value: "Russian", label:'러시아'}
             ]}
             handleChange={(e:any)=>{changeLanguage(e.target.value)}}
           />
@@ -185,8 +181,10 @@ export default function Arias(props:any) {
             <ul className='titleRow'>
               <li className="th_num" style={{width:'10%'}}>번호</li>
               <li className="th_songname" style={{width:'50%'}}>곡명</li>
-              <li className="th_operaauthor" style={{width:'20%'}}>오페라명</li>
-              <li className="th_operaauthor" style={{width:'20%'}}>작곡가</li>
+              <div style={{width:'40%'}} className='titleRow_sub'>
+                <li className="th_line" >오페라명</li>
+                <li className="th_line" >작곡가</li>
+              </div>
             </ul>
             {
               isResdataFalse
@@ -216,8 +214,10 @@ export default function Arias(props:any) {
                       >
                         <li className="td_num" style={{width:'10%'}}>{item.id}</li>
                         <li className="td_songname" style={{width:'50%'}}>{renderPreview(item.song_title)}</li>
-                        <li className="td_operaauthor" style={{width:'20%'}}>{item.opera_title}</li>
-                        <li className="td_operaauthor" style={{width:'20%'}}>{item.composer}</li>
+                        <div style={{width:'40%'}} className='titleRow_sub'>
+                          <li className="td_line" >{item.opera_title}</li>
+                          <li className="td_line" >{item.composer}</li>
+                        </div>
                       </ul>
                     )
                   })

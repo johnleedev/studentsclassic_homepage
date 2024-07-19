@@ -17,19 +17,18 @@ export default function Lyrics (props:any) {
   }
 
   const [postList, setPostList] = useState<postList[]>([]);
-  const [songName, setSongName] = useState('');
-  const [operaName, setOperaName] = useState('');
-  const [author, setAuthor] = useState('');
+  const [song_title, setSong_title] = useState('');
+  const [composer, setComposer] = useState('');
   const [inputWord, setInputWord] = useState('');
   const [trans, setTrans] = useState('');
   const [sort, setSort] = useState('');
-  const [nation, setNation] = useState('');
+  const [language, setLanguage] = useState('');
   const [refresh, setRefresh] = useState<boolean>(false);
 
   // 게시글 가져오기
   const fetchPosts = async () => {
-    // const res = await axios.get(`https://www.studentsclassic.com/study/getworddataadmin/${nation}`)
-    const res = await axios.get(`${MainURL}/lyricssave/getwordall222/${nation}`)
+    // const res = await axios.get(`https://www.studentsnursing.com/study/getworddataadmin/${nation}`)
+    const res = await axios.get(`${MainURL}/lyricssave/getwordall222/${language}`)
     if (res) {
       let copy: any = [...res.data];
       setPostList(copy);
@@ -38,7 +37,7 @@ export default function Lyrics (props:any) {
 
   useEffect(() => {
     fetchPosts();
-  }, [nation, refresh]);  
+  }, [language, refresh]);  
 
   
   // 종류 선택 ----------------------------------------------
@@ -50,8 +49,11 @@ export default function Lyrics (props:any) {
 
   const nationOptions = [
     { value: '선택', label: '선택' },
-    { value: 'Itary', label: 'Itary' },
+    { value: 'Italian', label: 'Italian' },
     { value: 'German', label: 'German' },
+    { value: 'French', label: 'French' },
+    { value: 'English', label: 'English' },
+    { value: 'Russian', label: 'Russian' },
   ];
 
 
@@ -65,7 +67,7 @@ export default function Lyrics (props:any) {
   const [selectedNationOption, setSelectedNationOption] = useState(nationOptions[0]);
   const handleSelectNationChange = ( event : any) => {
    setSelectedNationOption(event);
-   setNation(event.label);
+   setLanguage(event.label);
   }
 
 
@@ -83,7 +85,7 @@ export default function Lyrics (props:any) {
  
 
   const registerPost = async () => {
-    if (sort && nation) {
+    if (sort && language) {
       try {
         const replace = inputWord.replaceAll('\n', ' ').replaceAll(',', ' ').replaceAll('.', ' ').replaceAll('!', ' ').replaceAll("'", "\' ")
                         .replaceAll('.', ' .').replaceAll('´', '´ ').replaceAll('’', '’ ').replaceAll('?', ' ?');
@@ -91,18 +93,19 @@ export default function Lyrics (props:any) {
         const copy2 = copy.filter((e:any)=> e !== '' && e !== '?' && e !== ',' && e !== '.' && e !== '!' && e !== ''
                                 && e !== ':' && e !== ';' && e !== '´' && e !== '’');
         const result = copy2.filter((item, index, array) => array.indexOf(item) === index);
-        const resultWithoutDuplicates = await result.filter((item) => !postList.some((postItem) => postItem.word.toLowerCase() === item.toLowerCase()));
+        const resultWithoutDuplicates = await result.filter((item:any) => 
+          !postList.some(postItem => postItem.word && postItem.word.toLowerCase() === item.toLowerCase())
+        );
         const wordNum = resultWithoutDuplicates.length;
 
         console.log('result', result.length);
         console.log('resultWithoutDuplicates', resultWithoutDuplicates.length);
   
-        const requestSong = axios.post(`https://www.studentsclassic.com/study/savesong`, {
-            sort : sort,
-            nation : nation,
-            songName : songName,
-            operaName : operaName,
-            author : author,
+        const requestSong = axios.post(`${MainURL}/lyricssave/savesong`, {
+            // sort : sort,
+            language : language,
+            song_title : song_title ,
+            composer : composer,
             lyrics : inputWord,
             trans : trans
         });
@@ -112,8 +115,8 @@ export default function Lyrics (props:any) {
           for (let index = 0; index < resultWithoutDuplicates.length; index++) {
             const item = resultWithoutDuplicates[index];
             try {
-              const response = await axios.post(`${MainURL}/lyricssave/postmeaning`, {
-                nation : nation, word : item, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
+              const response = await axios.post(`${MainURL}/lyricssave/insertword`, {
+                language : language, word : item, wordNum : index+1 < 10 ? `0${index+1}/${wordNum}` : `${index+1}/${wordNum}`
               });
               setRefresh(!refresh);
               console.log(response.data);
@@ -122,6 +125,8 @@ export default function Lyrics (props:any) {
             }
           }
           alert('완료되었습니다.');
+          setTrans('');
+          setInputWord('');
         } else {
           alert('이미 저장된 곡입니다.');  
         }
@@ -168,9 +173,9 @@ export default function Lyrics (props:any) {
           <div className='name'>
             <p>제목</p>
           </div>
-          <input type="text" onChange={(e)=>{setSongName(e.target.value)}} value={songName} />
+          <input type="text" onChange={(e)=>{setSong_title(e.target.value)}} value={song_title} />
         </div>
-        {
+        {/* {
           sort === 'Aria' &&
           <div className="inputbox">
             <div className='name'>
@@ -178,12 +183,12 @@ export default function Lyrics (props:any) {
             </div>
             <input type="text" onChange={(e)=>{setOperaName(e.target.value)}} value={operaName} />
           </div>
-        }
+        } */}
         <div className="inputbox">
           <div className='name'>
             <p>작곡가</p>
           </div>
-          <input type="text" onChange={(e)=>{setAuthor(e.target.value)}} value={author} />
+          <input type="text" onChange={(e)=>{setComposer(e.target.value)}} value={composer} />
         </div>
         <div className="inputbox">
           <div className='name'>

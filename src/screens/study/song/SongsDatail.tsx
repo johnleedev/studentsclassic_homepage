@@ -2,13 +2,15 @@ import '../Study.scss';
 import Footer from '../../../components/Footer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
+import { useRecoilValue } from 'recoil';
+import { recoilUserData } from '../../../RecoilStore';
 
 export default function SongsDetail() {
   
   let navigate = useNavigate();
   const location = useLocation();
   const propsData = location.state.data;
-  
+  const userData = useRecoilValue(recoilUserData);
   const reform = propsData.lyrics.split('\n');
 
   return (
@@ -72,7 +74,11 @@ export default function SongsDetail() {
                             :
                             <div key={wordIndex}
                               onClick={()=>{
-                                navigate('/study/worddetail', {state : {setword : wordcopy, nation : propsData.language} });
+                                if (userData.grade === 'new') {
+                                  alert('해당 기능은 정회원만 볼수 있습니다. 등업신청 게시판에서 등업을 신청하세요.')
+                                } else {
+                                  navigate('/study/worddetail', {state : {setword : wordcopy, nation : propsData.language} });
+                                }
                               }}
                             > 
                               <p style={{textDecorationLine:'underline', textDecorationColor:'#8B8B8B'}}>{word}</p>

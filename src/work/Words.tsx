@@ -24,7 +24,7 @@ export default function Words (props:any) {
 
   // 게시글 가져오기
   const fetchPosts = async () => {
-    const res = await axios.get(`https://www.studentsclassic.com/study/getworddataadmin/${nation}`)
+    const res = await axios.get(`https://www.studentsnursing.com/study/getworddataadmin/${nation}`)
     // const res = await axios.get(`${MainURL}/lyricssave/getworddataadmin2`)
     if (res) {
       let copy: any = [...res.data];
@@ -73,7 +73,7 @@ export default function Words (props:any) {
   const registerRevise = async () => {
     try {
         
-      const requestReviese = axios.post(`https://www.studentsclassic.com/study/wordrevise`, {
+      const requestReviese = axios.post(`https://www.studentsnursing.com/study/wordrevise`, {
         nation : nation,
         wordID : wordID,
         meaning : meaning
@@ -94,7 +94,7 @@ export default function Words (props:any) {
 
   const registerDelete = async (ID:any) => {
     try {
-      const requestDelete = axios.post(`https://www.studentsclassic.com/study/worddelete`, {
+      const requestDelete = axios.post(`https://www.studentsnursing.com/study/worddelete`, {
         nation : nation,
         wordID : ID,
       });

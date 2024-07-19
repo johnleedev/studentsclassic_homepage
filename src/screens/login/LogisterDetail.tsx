@@ -6,13 +6,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MainURL from "../../MainURL";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
-
+import { FaCheck } from "react-icons/fa";
+import { CiWarning } from "react-icons/ci";
 
 export default function LogisterDetail(props:any) {
   
   let navigate = useNavigate();
   const location = useLocation();
-  const propsData = location.state;
+  const propsData = location.state.sort === 'sns' ? location.state.data : '';
 
   const [currentTab, setCurrentTab] = useState(1);
 
@@ -149,8 +150,14 @@ export default function LogisterDetail(props:any) {
   ];
 
 
-  const [logisterAccount, setlogisterAccount] = useState(propsData.email);
-  const [logisterName, setLogisterName] = useState(propsData.name);
+  const [logisterAccount, setlogisterAccount] = useState( location.state.sort === 'sns' ? propsData.email : '');
+  const [logisterAccountCheck, setLogisterAccountCheck] = useState<boolean>(false);
+  const [logisterAccountAuthNum, setLogisterAccountAuthNum] = useState('');
+  const [logisterAccountAuthInput, setLogisterAccountAuthInput] = useState('');
+  const [logisterAccountAuthCheck, setLogisterAccountAuthCheck] = useState<boolean>(false);
+  const [logisterPasswd, setLogisterPasswd] = useState('');
+  const [logisterPasswdCheck, setLogisterPasswdCheck] = useState('');
+  const [logisterName, setLogisterName] = useState( location.state.sort === 'sns' ? propsData.name : '');
   const [logisterSchool, setLogisterSchool] = useState('');
   const [logisterSchNum, setLogisterSchNum] = useState('');
   const [logisterPart, setLogisterPart] = useState('');
@@ -164,25 +171,65 @@ export default function LogisterDetail(props:any) {
       checkServiceNotifi: checkServiceNotifi,
       email : logisterAccount,
       name : logisterName,
+      password : logisterPasswd,
       userSchool : logisterSchool,
       userSchNum : logisterSchNum,
       userPart : logisterPart,
-      userURL : propsData.userURL
+      userURL : location.state.sort === 'sns' ? propsData.userURL : 'email'
     }
 
+    if (!logisterAccountCheck) {
+      alert('이메일 중복확인을 해주세요')
+    } else if (!logisterAccountAuthCheck) {
+      alert('이메일 인증을 완료해주세요')
+    } else {
+      await axios
+      .post(`${MainURL}/login/logisterdo`, {userData})
+      .then((res)=>{
+        if (res.data) {
+          alert('가입이 완료되었습니다. 로그인 해주세요.');
+          navigate('/login');
+        }
+      })
+      .catch((err)=>{
+        alert('다시 시도해주세요.')
+      })
+    }
+  };
+
+  // 이메일 중복 체크
+  const handleCheckAccount = async () => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(logisterAccount);
+    if (regex) {
+      const res = await axios.get(`${MainURL}/login/logincheckaccount/${logisterAccount}`)
+      if (res.data) { 
+        alert('중복된 이메일 계졍이 있습니다.')
+        setLogisterAccountCheck(false);
+      } else {
+        alert('사용할수 있는 이메일 계졍입나다. 해당 메일로 인증번호를 보냈습니다.')
+        setLogisterAccountCheck(true);
+        handleCheckAccountAuth();
+      }
+    } else {
+      alert('이메일 형식이 아닙니다.')
+    }
+  }; 
+  // 이메일 인증하기
+  const handleCheckAccountAuth = async () => {
+    const userData = {
+      email : logisterAccount
+    }
     await axios
-     .post(`${MainURL}/login/logisterdo`, {userData})
+     .post(`${MainURL}/login/loginaccountauth`, userData)
      .then((res)=>{
        if (res.data) {
-         alert('가입이 완료되었습니다. 로그인 해주세요.');
-         navigate('/login');
+          setLogisterAccountAuthNum(JSON.stringify(res.data.num));
        }
      })
      .catch((err)=>{
        alert('다시 시도해주세요.')
      })
    };
-
    
   return (
     <div className="login">
@@ -199,7 +246,11 @@ export default function LogisterDetail(props:any) {
 
           <div className="stepnotice">
             <div className="currentbar">
-              <p>SNS가입</p>
+              {
+                location.state.sort === 'sns'
+                ? <p>SNS가입</p>
+                : <p>이메일가입</p>
+              }
               <p style={{margin:'0 10px', paddingTop:'5px'}}><FaAngleDoubleRight /></p>
               <p className="current">동의</p>
               <p style={{margin:'0 10px', paddingTop:'5px'}}><FaAngleDoubleRight /></p>
@@ -231,7 +282,7 @@ export default function LogisterDetail(props:any) {
                   <FaCircleCheck size={20} color={checkUsingPolicy ? "#33383f" : "EAEAEA"}/>
                   <label htmlFor="reg_use">[필수] 서비스 이용약관 동의</label>
                 </span>
-                <a href="https://www.studentsclassic.com/usingpolicy.html" target="_blank" className="agree_link">이용약관 보기</a>
+                <a href="https://www.studentsnursing.com/usingpolicy.html" target="_blank" className="agree_link">이용약관 보기</a>
               </li>
               <li>
                 <span className="checks"
@@ -242,7 +293,7 @@ export default function LogisterDetail(props:any) {
                   <FaCircleCheck  size={20} color={checkPersonalInfo ? "#33383f" : "EAEAEA"}/>
                   <label htmlFor="reg_personal">[필수] 개인정보 수집/이용 동의</label>
                 </span>
-                <a href="https://www.studentsclassic.com/personalinfo.html" target="_blank" className="agree_link">개인정보 수집/이용 보기</a>
+                <a href="https://www.studentsnursing.com/personalinfo.html" target="_blank" className="agree_link">개인정보 수집/이용 보기</a>
               </li>
               <li>
                 <span className="checks"
@@ -305,7 +356,11 @@ export default function LogisterDetail(props:any) {
 
           <div className="stepnotice">
             <div className="currentbar">
-              <p>SNS가입</p>
+              {
+                location.state.sort === 'sns'
+                ? <p>SNS가입</p>
+                : <p>이메일가입</p>
+              }
               <p style={{margin:'0 10px', paddingTop:'5px'}}><FaAngleDoubleRight /></p>
               <p>동의</p>
               <p style={{margin:'0 10px', paddingTop:'5px'}}><FaAngleDoubleRight /></p>
@@ -317,12 +372,109 @@ export default function LogisterDetail(props:any) {
           <h2>필수항목</h2>
 
           <div className="inputbox">
-            <p>이메일주소 <span>*</span></p>
+            <div className="inputbox-btncover">
+              <p>이메일주소 <span>*</span></p>
+              {
+                location.state.sort === 'email' &&
+                <>
+                  {
+                    (logisterAccount !== '')
+                    &&
+                    <div style={{marginRight:'5px'}}>
+                    {
+                      logisterAccountCheck
+                      ? <FaCheck color='#1DDB16'/>
+                      : <CiWarning color='#FF0000'/>
+                    }
+                    </div>
+                  }
+                  <div className="addBtn"
+                    onClick={()=>{
+                      handleCheckAccount();
+                    }}
+                  >중복확인</div>
+                </>
+              }
+            </div>
             <input value={logisterAccount} className={logisterAccount === '' ? "inputdefault" : "inputdefault select" } type="text" 
               onChange={(e) => {
-                setlogisterAccount(e.target.value)}
-              }/>
+                const value = e.target.value;
+                if (value.length === 0 ) {
+                  setlogisterAccount('');
+                  setLogisterAccountCheck(false);
+                } else {
+                  const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(value);
+                  if (isKorean) {
+                    alert('한글은 입력할 수 없습니다.');
+                    return;
+                  }
+                  setlogisterAccount(value);
+                }
+              }} maxLength={45}/>
           </div>
+          {
+            logisterAccountCheck &&
+            <div className="inputbox">
+              <div className="inputbox-btncover">
+                <p>이메일 인증<span>*</span></p>
+                {
+                  location.state.sort === 'email' &&
+                  <>
+                    <div style={{marginRight:'5px'}}>
+                      {
+                        logisterAccountAuthCheck
+                        ? <FaCheck color='#1DDB16'/>
+                        : <CiWarning color='#FF0000'/>
+                      }
+                    </div>
+                    <div className="addBtn"
+                      onClick={()=>{
+                        if (logisterAccountAuthNum === logisterAccountAuthInput) {
+                          alert('인증되었습니다.')
+                          setLogisterAccountAuthCheck(true);
+                        } else {
+                          alert('인증 번호가 일치하지 않습니다.')
+                        }
+                      }}
+                    >인증하기</div>
+                  </>
+                }
+              </div>
+              <input value={logisterAccountAuthInput} className={logisterAccountAuthInput === '' ? "inputdefault" : "inputdefault select" } type="text" 
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const isNum = /^[0-9]*$/.test(value);
+                  if (!isNum) {
+                    alert('한글은 입력할 수 없습니다.');
+                    return;
+                  }
+                  setLogisterAccountAuthInput(value);
+                }} maxLength={45}/>
+            </div>
+          }
+          <div className="inputbox">
+              <p>비밀번호 <span>*</span></p>
+              <input value={logisterPasswd} className={logisterPasswd === '' ? "inputdefault" : "inputdefault select" } type="password" 
+                onChange={(e) => {setLogisterPasswd(e.target.value)}} maxLength={100}/> 
+            </div>
+            <div className="inputbox">
+              <p style={{display:'flex', alignItems:'center'}}>
+                <p>비밀번호확인</p>
+                {
+                  (logisterPasswd !== '' && logisterPasswdCheck !== '')
+                  &&
+                  <>
+                  {
+                    logisterPasswd === logisterPasswdCheck
+                    ? <FaCheck color='#1DDB16'/>
+                    : <CiWarning color='#FF0000'/>
+                  }
+                  </>
+                }
+              </p>
+              <input value={logisterPasswdCheck} className={logisterPasswdCheck === '' ? "inputdefault" : "inputdefault select" } type="password" 
+                onChange={(e) => {setLogisterPasswdCheck(e.target.value)}}/>
+            </div>
           <div className="inputbox">
             <p>이름 <span>*</span></p>
             <input value={logisterName} className={logisterName === '' ? "inputdefault" : "inputdefault select" } type="text" 
